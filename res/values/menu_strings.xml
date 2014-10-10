@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- TODO: Just generate this in the class. -->
+    <string name="building_info">Building Info</string>
+
+    <!-- Automatically generated.  -->
+    <string name="stop_this">STOP_THIS</string>
+
+</resources>
