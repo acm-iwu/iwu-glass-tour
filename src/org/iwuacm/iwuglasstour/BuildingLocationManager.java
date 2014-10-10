@@ -8,7 +8,7 @@ import org.iwuacm.iwuglasstour.model.Building;
 /**
  * Keeps track of the user's location and provides access to nearby buildings.
  */
-public class LocationManager {
+public class BuildingLocationManager {
 
 	public interface Listener {
 		/**
@@ -29,10 +29,10 @@ public class LocationManager {
 	
 	// TODO: Use.
 	@SuppressWarnings("unused")
-	private final LocationManager locationManager;
+	private final BuildingLocationManager locationManager;
 	private final Set<Listener> listeners;
 	
-	public LocationManager(LocationManager locationManager) {
+	public BuildingLocationManager(BuildingLocationManager locationManager) {
 		this.locationManager = locationManager;
 		this.listeners = new LinkedHashSet<Listener>();
 	}
