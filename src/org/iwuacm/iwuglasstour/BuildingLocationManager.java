@@ -5,6 +5,8 @@ import java.util.Set;
 
 import org.iwuacm.iwuglasstour.model.Building;
 
+import android.location.LocationManager;
+
 /**
  * Keeps track of the user's location and provides access to nearby buildings.
  */
@@ -29,10 +31,10 @@ public class BuildingLocationManager {
 	
 	// TODO: Use.
 	@SuppressWarnings("unused")
-	private final BuildingLocationManager locationManager;
+	private final LocationManager locationManager;
 	private final Set<Listener> listeners;
 	
-	public BuildingLocationManager(BuildingLocationManager locationManager) {
+	public BuildingLocationManager(LocationManager locationManager) {
 		this.locationManager = locationManager;
 		this.listeners = new LinkedHashSet<Listener>();
 	}
