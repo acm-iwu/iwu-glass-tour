@@ -5,9 +5,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
-    <org.iwuacm.iwuglasstour.InfoView
-        android:id="@+id/info_view"
+    <TextView
+        android:id="@+id/info_sample_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="160px"
+        android:gravity="center" />
+    
 </FrameLayout>
