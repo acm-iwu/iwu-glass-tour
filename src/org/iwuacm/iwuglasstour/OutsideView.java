@@ -32,7 +32,7 @@ public class OutsideView extends FrameLayout {
         
         this.sampleText = (TextView) findViewById(R.id.outside_sample_text);
 
-    	// TODO: This is just hear to show the view is working. Please remove.
+    	// TODO: This is just here to show the view is working. Please remove.
     	sampleText.setText("Outside view.");
     }
     
