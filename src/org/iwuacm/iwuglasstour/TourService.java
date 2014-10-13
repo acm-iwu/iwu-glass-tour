@@ -1,5 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
+import org.iwuacm.iwuglasstour.model.Building;
+
 import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
 
@@ -17,8 +19,33 @@ public class TourService extends Service {
 	
 	private static final String LIVE_CARD_TAG = "iwu-tour";
 	
+	private final BuildingLocationManager.Listener buildingLocationListener =
+			new BuildingLocationManager.Listener() {
+				@Override
+				public void onNearbyBuildingsChange(
+						Building left,
+						Building front,
+						Building right) {
+					
+					if (!buildingLocationManager.isInsideBuilding()) {
+						setActiveBuilding(front);
+					}
+				}
+				
+				@Override
+				public void onExitBuilding() {
+					setActiveBuilding(buildingLocationManager.getFrontBuilding());
+				}
+				
+				@Override
+				public void onEnterBuilding(Building building) {
+					setActiveBuilding(building);
+				}
+			};
+	
 	private BuildingLocationManager buildingLocationManager;
 	private LiveCard liveCard;
+	private Intent menuIntent;
 	
 	@Override
 	public void onCreate() {
@@ -44,14 +71,23 @@ public class TourService extends Service {
 			liveCard.setDirectRenderingEnabled(true).getSurfaceHolder().addCallback(renderer);
 			
             // Display the options menu on tap.
-            Intent menuIntent = new Intent(this, TourMenuActivity.class);
+            menuIntent = new Intent(this, TourMenuActivity.class);
             menuIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            liveCard.setAction(PendingIntent.getActivity(this, 0, menuIntent, 0));
+
+			setActiveBuilding(
+					buildingLocationManager.isInsideBuilding()
+						? buildingLocationManager.getBuildingInside()
+						: buildingLocationManager.getFrontBuilding(),
+					false);
+            liveCard.setAction(updatePendingIntent());
+
 			liveCard.attach(this);
 			
 			// Only show card if started explicitly. It's possible it was restarted automatically,
 			// and we don't want to show it in that case.
             liveCard.publish((intent == null) ? PublishMode.SILENT : PublishMode.REVEAL);
+
+			buildingLocationManager.addListener(buildingLocationListener);
 		} else {
 			liveCard.navigate();
 		}
@@ -70,5 +106,33 @@ public class TourService extends Service {
 		buildingLocationManager = null;
 
 		super.onDestroy();
+	}
+	
+	/**
+	 * Changes the {@link Building} that the user can get detailed information for and updates the
+	 * pending intent, so that the menu will reflect the changes.
+	 */
+	private void setActiveBuilding(Building activeBuilding) {
+		setActiveBuilding(activeBuilding, true);
+	}
+
+	private void setActiveBuilding(Building activeBuilding, boolean updatePendingIntent) {
+		if (activeBuilding == null) {
+			menuIntent.removeExtra(TourMenuActivity.ACTIVE_BUILDING_MODEL);
+		} else {
+			menuIntent.putExtra(TourMenuActivity.ACTIVE_BUILDING_MODEL, activeBuilding);
+		}
+
+		if (updatePendingIntent) {
+			updatePendingIntent();
+		}
+	}
+	
+	/**
+	 * Updates and returns a {@link PendingIntent} from the {@link #menuIntent}.
+	 */
+	private PendingIntent updatePendingIntent() {
+		// FLAG_UPDATE_CURRENT makes sure that the previous intent is overriden.
+		return PendingIntent.getActivity(this, 0, menuIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 	}
 }
