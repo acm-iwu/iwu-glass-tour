@@ -20,5 +20,13 @@ public class RectangularLocationTest extends TestCase {
 		assertEquals(northEast, location.getNorthEastCorner());
 		assertEquals(southWest, location.getSouthWestCorner());
 		assertEquals(southEast, location.getSouthEastCorner());
+		
+		// Create in different order to ensure correct construction.
+		RectangularLocation otherLocation =
+				new RectangularLocation(northEast, southWest, southEast, northWest);
+		assertEquals(location.getNorthWestCorner(), otherLocation.getNorthWestCorner());
+		assertEquals(location.getNorthEastCorner(), otherLocation.getNorthEastCorner());
+		assertEquals(location.getSouthWestCorner(), otherLocation.getSouthWestCorner());
+		assertEquals(location.getSouthEastCorner(), otherLocation.getSouthEastCorner());
 	}
 }
