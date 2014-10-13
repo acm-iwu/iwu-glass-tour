@@ -22,7 +22,6 @@ public class InfoActivity extends Activity {
 		
 		Building building = (Building) getIntent().getSerializableExtra(BUILDING_MODEL);
 
-		InfoView infoView = new InfoView(building, getApplicationContext());
-		setContentView(infoView);
+		setContentView(new InfoView(building, this));
 	}
 }
