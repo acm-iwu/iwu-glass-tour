@@ -21,7 +21,7 @@ public class TourRenderer implements DirectRenderingCallback {
 	
 	private final BuildingLocationManager buildingLocationManager;
 	private final OutsideView outsideView;
-	private final InfoView infoView;
+	private final InsideView infoView;
 	
 	private final BuildingLocationManager.Listener buildingLocationListener =
 			new BuildingLocationManager.Listener() {
@@ -60,7 +60,7 @@ public class TourRenderer implements DirectRenderingCallback {
 	public TourRenderer(Context context, BuildingLocationManager buildingLocationManager) {
 		this.buildingLocationManager = buildingLocationManager;
 		this.outsideView = new OutsideView(context);
-		this.infoView = new InfoView(context);
+		this.infoView = new InsideView(context);
 		
 		outsideView.setListener(createViewChangeListenerFor(outsideView));
 		infoView.setListener(createViewChangeListenerFor(infoView));

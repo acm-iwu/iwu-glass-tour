@@ -9,31 +9,30 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
- * Displays information about a building. Gets displayed when a user is inside a building or asks
- * for information about a building.
+ * Displays information about a building. Gets displayed when a user is inside a building.
  */
-public class InfoView extends FrameLayout {
+public class InsideView extends FrameLayout {
 	
 	private final TextView sampleText;
 	
 	private ViewChangeListener listener;
 
-    public InfoView(Context context) {
+    public InsideView(Context context) {
         this(context, null, 0);
     }
 
-    public InfoView(Context context, AttributeSet attrs) {
+    public InsideView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public InfoView(Context context, AttributeSet attrs, int defStyle) {
+    public InsideView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        LayoutInflater.from(context).inflate(R.layout.info, this);
+        LayoutInflater.from(context).inflate(R.layout.inside, this);
         
-        this.sampleText = (TextView) findViewById(R.id.info_sample_text);
+        this.sampleText = (TextView) findViewById(R.id.inside_sample_text);
 
     	// TODO: This is just hear to show the view is working. Please remove.
-        sampleText.setText("Info view.");
+        sampleText.setText("Inside view.");
     }
     
     public void setBuilding(Building building) {

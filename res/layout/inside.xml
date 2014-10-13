@@ -6,7 +6,7 @@
     android:background="@android:color/black">
 
     <TextView
-        android:id="@+id/info_sample_text"
+        android:id="@+id/inside_sample_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
