@@ -42,4 +42,34 @@ public class BuildingLocationManager {
 	public void addListener(Listener listener) {
 		listeners.add(listener);
 	}
+
+	public void removeListener(Listener listener) {
+		listeners.remove(listener);
+	}
+	
+	// TODO: Implement.
+	public void startTracking() {}
+	
+	// TODO: Implement.
+	public void stopTracking() {}
+	
+	public boolean isInsideBuilding() {
+		// TODO: Implement.
+		return false;
+	}
+	
+	public Building getLeftBuilding() {
+		// TODO: Implement.
+		return null;
+	}
+	
+	public Building getFrontBuilding() {
+		// TODO: Implement.
+		return null;
+	}
+	
+	public Building getRightBuilding() {
+		// TODO: Implement.
+		return null;
+	}
 }
