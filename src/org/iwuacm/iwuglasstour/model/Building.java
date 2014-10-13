@@ -1,10 +1,14 @@
 package org.iwuacm.iwuglasstour.model;
 
+import java.io.Serializable;
+
 /**
  * Represents a building on the IWU campus.
  */
-public class Building {
+public class Building implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private final String name;
 	private final String description;
 	private final RectangularLocation location;

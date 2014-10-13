@@ -1,5 +1,6 @@
 package org.iwuacm.iwuglasstour.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,8 +10,10 @@ import java.util.List;
 /**
  * Defines the location of a place as a rectangle with four {@link Location}s as the corners.
  */
-public class RectangularLocation {
+public class RectangularLocation implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private static final Comparator<Location> COMPARE_BY_LATITUDE_THEN_LONGITUDE =
 			new Comparator<Location>() {
 				@Override
