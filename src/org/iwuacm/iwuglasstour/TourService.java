@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.Buildings;
 
 import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
@@ -51,9 +52,10 @@ public class TourService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		
+		Buildings buildings = Buildings.getBuildings();
 		LocationManager locationManager =
 				(LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		this.buildingLocationManager = new BuildingLocationManager(locationManager);
+		buildingLocationManager = new BuildingLocationManager(buildings, locationManager);
 	}
 
 	@Override

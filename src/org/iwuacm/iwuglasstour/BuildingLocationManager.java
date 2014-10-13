@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.Buildings;
 
 import android.location.LocationManager;
 
@@ -31,10 +32,14 @@ public class BuildingLocationManager {
 	
 	// TODO: Use.
 	@SuppressWarnings("unused")
+	private final Buildings buildings;
+	// TODO: Use.
+	@SuppressWarnings("unused")
 	private final LocationManager locationManager;
 	private final Set<Listener> listeners;
 	
-	public BuildingLocationManager(LocationManager locationManager) {
+	public BuildingLocationManager(Buildings buildings, LocationManager locationManager) {
+		this.buildings = buildings;
 		this.locationManager = locationManager;
 		this.listeners = new LinkedHashSet<Listener>();
 	}
