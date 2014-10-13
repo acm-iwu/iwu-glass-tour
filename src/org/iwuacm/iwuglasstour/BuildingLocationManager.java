@@ -57,6 +57,21 @@ public class BuildingLocationManager {
 		// TODO: Implement.
 		return false;
 	}
+
+	/**
+	 * Returns the building that the user is within.
+	 * 
+	 * @throws IllegalArgumentException if the user is not within a building (see
+	 * {@link #isInsideBuilding()})
+	 */
+	public Building getBuildingInside() {
+		if (!isInsideBuilding()) {
+			throw new IllegalArgumentException();
+		}
+		
+		// TODO: Implement.
+		return null;
+	}
 	
 	public Building getLeftBuilding() {
 		// TODO: Implement.
