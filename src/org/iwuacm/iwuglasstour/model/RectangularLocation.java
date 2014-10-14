@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.iwuacm.iwuglasstour.util.MathUtils;
 
 /**
- * Defines the location of a place as a rectangle with four {@link Location}s as the corners.
+ * Defines the location of a place as a rectangle with four {@link Location}s as the corners. The
+ * edges must be parallel to the horizontal and vertical axes, so there can only be two distinct
+ * latitudes and two distinct longitudes.
  */
 public class RectangularLocation implements Serializable {
 	
@@ -47,6 +51,24 @@ public class RectangularLocation implements Serializable {
 		this.northWest = sortedLocations.get(1);
 		this.southEast = sortedLocations.get(2);
 		this.northEast = sortedLocations.get(3);
+		
+		Set<Double> latitudes = new HashSet<Double>(Arrays.asList(
+				southWest.getLatitude(),
+				northWest.getLatitude(),
+				southEast.getLatitude(),
+				northEast.getLatitude()));
+		if (latitudes.size() != 2) {
+			throw new IllegalArgumentException("Must have only two distinct latitudes.");
+		}
+		
+		Set<Double> longitudes = new HashSet<Double>(Arrays.asList(
+				southWest.getLongitude(),
+				northWest.getLongitude(),
+				southEast.getLongitude(),
+				northEast.getLongitude()));
+		if (longitudes.size() != 2) {
+			throw new IllegalArgumentException("Must have only two distinct longitudes.");
+		}
 	}
 	
 	/**

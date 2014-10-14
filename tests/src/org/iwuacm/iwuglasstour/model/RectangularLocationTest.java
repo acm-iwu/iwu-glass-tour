@@ -37,6 +37,35 @@ public class RectangularLocationTest extends TestCase {
 		assertEquals(location.getSouthWestCorner(), otherLocation.getSouthWestCorner());
 		assertEquals(location.getSouthEastCorner(), otherLocation.getSouthEastCorner());
 	}
+	
+	/**
+	 * Tests that the constructor throws an IllegalArgumentException when the corners are not
+	 * parallel to the horizontal and vertical axes. These bad locations are parallelograms, so it
+	 * is important that they be deemed invalid.
+	 */
+	public void testConstructor_badLatitudes() {
+		try {
+			new RectangularLocation(
+					new Location(2.0, 2.0),
+					new Location(0.0, 2.0),
+					new Location(1.0, -2.0),
+					new Location(-1.0, -2.0));
+			
+			fail("Missing exception.");
+		} catch (IllegalArgumentException e) {}
+	}
+
+	public void testConstructor_badLongitudes() {
+		try {
+			new RectangularLocation(
+					new Location(1.0, 1.0),
+					new Location(-1.0, 2.0),
+					new Location(1.0, -1.0),
+					new Location(-1.0, 0.0));
+			
+			fail("Missing exception.");
+		} catch (IllegalArgumentException e) {}
+	}
 
 	/**
 	 * Tests case where the north west corner is expected.
