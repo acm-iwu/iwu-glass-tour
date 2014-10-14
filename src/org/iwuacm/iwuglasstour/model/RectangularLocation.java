@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.iwuacm.iwuglasstour.util.MathUtils;
+
 /**
  * Defines the location of a place as a rectangle with four {@link Location}s as the corners.
  */
@@ -73,5 +75,63 @@ public class RectangularLocation implements Serializable {
 	 */
 	public Location getSouthEastCorner() {
 		return southEast;
+	}
+	
+	/**
+	 * Returns the closest location to this building by finding the closest point on its perimeter
+	 * to the {@code location} or by returning {@code location} if {@code location} is within the
+	 * building.
+	 */
+	public Location getClosestPointWithin(Location location) {
+		Double latitude = null;
+		Double longitude = null;
+		
+		if (MathUtils.isNumberWithin(
+				location.getLatitude(), northWest.getLatitude(), northEast.getLatitude())) {
+			latitude = location.getLatitude();
+		}
+		
+		if (MathUtils.isNumberWithin(
+				location.getLongitude(), northEast.getLongitude(), southEast.getLongitude())) {
+			longitude = location.getLongitude();
+		}
+		
+		if ((latitude != null) && (longitude != null)) {
+			return new Location(latitude, longitude);
+		}
+		
+		// The other coordinate has to be from a corner. Let's figure out the best corner.
+		double minDistance = Double.MAX_VALUE;
+		double latitudeThere = 0.0;
+		double longitudeThere = 0.0;
+
+		for (Location corner : Arrays.asList(northWest, northEast, southWest, southEast)) {
+			double withLatitude = latitude == null ? corner.getLatitude() : latitude;
+			double withLongitude = longitude == null ? corner.getLongitude() : longitude;
+
+			double distance = MathUtils.getDistance(
+					withLatitude,
+					withLongitude,
+					location.getLatitude(),
+					location.getLongitude());
+
+			if (distance < minDistance) {
+				minDistance = distance;
+				latitudeThere = withLatitude;
+				longitudeThere = withLongitude;
+			}
+		}
+
+		return new Location(latitudeThere, longitudeThere);
+	}
+	
+	/**
+	 * Returns whether {@code location} is within this {@link RectangularLocation}.
+	 */
+	public boolean isLocationContained(Location location) {
+		return (location.getLatitude() >= northWest.getLatitude())
+				&& (location.getLatitude() <= northEast.getLatitude())
+				&& (location.getLongitude() >= southEast.getLongitude())
+				&& (location.getLongitude() <= northEast.getLongitude());
 	}
 }

@@ -16,6 +16,8 @@
 
 package org.iwuacm.iwuglasstour.util;
 
+import android.location.Location;
+
 /**
  * A utility class containing arithmetic and geometry helper methods.
  */
@@ -115,5 +117,24 @@ public class MathUtils {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return (float) (EARTH_RADIUS_KM * c);
+    }
+    
+    /**
+     * Returns whether the number is within (inclusive) the bounds.
+     */
+    public static boolean isNumberWithin(double number, double boundOne, double boundTwo) {
+    	return (number >= Math.min(boundOne, boundTwo)) && (number <= Math.max(boundOne, boundTwo));
+    }
+    
+    /**
+     * Converts an Android API {@link Location} to the {@link
+     * org.iwuacm.iwuglasstour.model.Location} model.
+     */
+    public static org.iwuacm.iwuglasstour.model.Location androidLocationToModelLocation(
+    		Location androidLocation) {
+    	
+    	return new org.iwuacm.iwuglasstour.model.Location(
+    			androidLocation.getLatitude(),
+    			androidLocation.getLongitude());
     }
 }
