@@ -1,6 +1,5 @@
 package org.iwuacm.iwuglasstour.model;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ public class Buildings {
 	public static Buildings getBuildings() {
 		// TODO: Read in buildings.
 		
-		// TODO: Replace empty list of buildings with actual buildings.
-		return new Buildings(Collections.<Building>emptyList());
+		// TODO: Replace TestData buildings with actual buildings.
+		return new Buildings(TestData.BUILDINGS);
 	}
 }
