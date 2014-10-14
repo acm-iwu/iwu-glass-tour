@@ -43,6 +43,11 @@ public class TourService extends Service {
 				public void onEnterBuilding(Building building) {
 					setActiveBuilding(building);
 				}
+
+				@Override
+				public void onCompassInterference(boolean hasInterference) {
+					// Do not care here.
+				}
 			};
 	
 	private BuildingLocationManager buildingLocationManager;

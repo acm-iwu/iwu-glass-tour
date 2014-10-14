@@ -53,6 +53,11 @@ public class TourRenderer implements DirectRenderingCallback {
 					
 					// TODO: Implement.
 				}
+
+				@Override
+				public void onCompassInterference(boolean hasInterference) {
+					// TODO: Implement.
+				}
 			};
 	
 	private boolean renderingPaused;

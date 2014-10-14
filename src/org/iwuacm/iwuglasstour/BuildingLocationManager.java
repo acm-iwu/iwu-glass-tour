@@ -36,6 +36,13 @@ public class BuildingLocationManager {
 		 * Called when the user leaves a building.
 		 */
 		void onExitBuilding();
+		
+		/**
+		 * Called when Glass detects interference interference has changed.
+		 * 
+		 * @param hasInterference indicates whether there is interference now
+		 */
+		void onCompassInterference(boolean hasInterference);
 	}
 	
 	/**
@@ -61,14 +68,21 @@ public class BuildingLocationManager {
 				}
 		
 				@Override
-				// TODO: Utilize?
-				public void onAccuracyChanged(OrientationManager orientationManager) {}
+				public void onAccuracyChanged(OrientationManager orientationManager) {
+					boolean hasInterferenceNow = orientationManager.hasInterference();
+
+					if (hasInterference != hasInterferenceNow) {
+						hasInterference = hasInterferenceNow;
+						notifyCompassInterference(hasInterference);
+					}
+				}
 			};
 			
 	private Building left;
 	private Building front;
 	private Building right;
 	private Building inside;
+	private boolean hasInterference;
 	
 	public BuildingLocationManager(
 			Buildings buildings,
@@ -262,6 +276,15 @@ public class BuildingLocationManager {
 	private void notifyExitBuilding() {
 		for (Listener listener : listeners) {
 			listener.onExitBuilding();
+		}
+	}
+	
+	/**
+	 * Notifies the listeners of the beginning or end of compass interference.
+	 */
+	private void notifyCompassInterference(boolean hasInterference) {
+		for (Listener listener : listeners) {
+			listener.onCompassInterference(hasInterference);
 		}
 	}
 }

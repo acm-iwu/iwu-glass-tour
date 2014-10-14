@@ -57,6 +57,9 @@ public class OutsideView extends FrameLayout {
     	}
     }
     
+    // TODO: Implement.
+    public void setHasCompassInterference(boolean hasInterference) {}
+    
     public void setListener(ViewChangeListener listener) {
     	this.listener = listener;
     }
