@@ -10,6 +10,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.location.LocationManager;
 import android.os.IBinder;
 
@@ -55,7 +56,10 @@ public class TourService extends Service {
 		Buildings buildings = Buildings.getBuildings();
 		LocationManager locationManager =
 				(LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		buildingLocationManager = new BuildingLocationManager(buildings, locationManager);
+		SensorManager sensorManager =
+				(SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		buildingLocationManager =
+				new BuildingLocationManager(buildings, sensorManager, locationManager);
 	}
 
 	@Override
