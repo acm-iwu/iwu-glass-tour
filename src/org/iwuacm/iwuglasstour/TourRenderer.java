@@ -1,6 +1,9 @@
 package org.iwuacm.iwuglasstour;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.view.InsideView;
+import org.iwuacm.iwuglasstour.view.OutsideView;
+import org.iwuacm.iwuglasstour.view.ViewChangeListener;
 
 import android.content.Context;
 import android.graphics.Canvas;

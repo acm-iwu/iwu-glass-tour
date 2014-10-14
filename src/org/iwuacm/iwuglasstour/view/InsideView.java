@@ -1,5 +1,6 @@
-package org.iwuacm.iwuglasstour;
+package org.iwuacm.iwuglasstour.view;
 
+import org.iwuacm.iwuglasstour.R;
 import org.iwuacm.iwuglasstour.model.Building;
 
 import android.content.Context;

@@ -1,4 +1,4 @@
-package org.iwuacm.iwuglasstour;
+package org.iwuacm.iwuglasstour.view;
 
 import java.util.ArrayList;
 import java.util.List;

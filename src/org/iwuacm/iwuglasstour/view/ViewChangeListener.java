@@ -1,9 +1,9 @@
-package org.iwuacm.iwuglasstour;
+package org.iwuacm.iwuglasstour.view;
 
 /**
  * Interface for listening to when a view changes.
  */
-interface ViewChangeListener {
+public interface ViewChangeListener {
 
 	/**
 	 * Called whenever the view is updated.

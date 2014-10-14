@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.view.InfoView;
 
 import android.app.Activity;
 import android.os.Bundle;
