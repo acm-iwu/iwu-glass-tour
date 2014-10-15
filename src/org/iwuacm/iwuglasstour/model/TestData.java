@@ -14,10 +14,6 @@ class TestData {
 			+ "adipiscing elit. Aenean tempus vel leo nec feugiat. Nullam ullamcorper ipsum "
 			+ "gravida erat maximus, at mollis lacus eleifend.";
 	
-	public static final Attraction ATTRACTION_1 = new Attraction("Lab", DESCRIPTION);
-	public static final Attraction ATTRACTION_2 = new Attraction("Classroom", DESCRIPTION);
-	public static final Attraction ATTRACTION_3 = new Attraction("ACM Lounge", DESCRIPTION);
-	
 	public static final Photo PHOTO_1 = Photo.builder()
 			.withDrawableId(R.drawable.test_1)
 			.withDescription(DESCRIPTION)
@@ -33,6 +29,23 @@ class TestData {
 	public static final Photo PHOTO_4 = Photo.builder()
 			.withDrawableId(R.drawable.test_4)
 			.withDescription(DESCRIPTION)
+			.build();
+	
+	public static final Attraction ATTRACTION_1 = Attraction.builder()
+			.withName("Lab")
+			.withDescription(DESCRIPTION)
+			.addPhoto(PHOTO_1)
+			.addPhoto(PHOTO_2)
+			.build();
+	public static final Attraction ATTRACTION_2 = Attraction.builder()
+			.withName("Classroom")
+			.withDescription(DESCRIPTION)
+			.addPhoto(PHOTO_3)
+			.build();
+	public static final Attraction ATTRACTION_3 = Attraction.builder()
+			.withName("ACM Lounge")
+			.withDescription(DESCRIPTION)
+			.addPhoto(PHOTO_4)
 			.build();
 
 	/**
