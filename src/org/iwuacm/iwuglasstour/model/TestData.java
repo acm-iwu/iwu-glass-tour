@@ -18,10 +18,22 @@ class TestData {
 	public static final Attraction ATTRACTION_2 = new Attraction("Classroom", DESCRIPTION);
 	public static final Attraction ATTRACTION_3 = new Attraction("ACM Lounge", DESCRIPTION);
 	
-	public static final int PHOTO_1 = R.drawable.test_1;
-	public static final int PHOTO_2 = R.drawable.test_2;
-	public static final int PHOTO_3 = R.drawable.test_3;
-	public static final int PHOTO_4 = R.drawable.test_4;
+	public static final Photo PHOTO_1 = Photo.builder()
+			.withDrawableId(R.drawable.test_1)
+			.withDescription(DESCRIPTION)
+			.build();
+	public static final Photo PHOTO_2 = Photo.builder()
+			.withDrawableId(R.drawable.test_2)
+			.withDescription(DESCRIPTION)
+			.build();
+	public static final Photo PHOTO_3 = Photo.builder()
+			.withDrawableId(R.drawable.test_3)
+			.withDescription(DESCRIPTION)
+			.build();
+	public static final Photo PHOTO_4 = Photo.builder()
+			.withDrawableId(R.drawable.test_4)
+			.withDescription(DESCRIPTION)
+			.build();
 
 	/**
 	 * Sample list of buildings. Their locations use {@link #createRectangularLocation}, so they

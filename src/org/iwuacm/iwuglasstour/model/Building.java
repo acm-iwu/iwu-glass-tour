@@ -15,7 +15,7 @@ public class Building implements Serializable {
 	private final String name;
 	private final String description;
 	private final RectangularLocation location;
-	private final List<Integer> photos;
+	private final List<Photo> photos;
 	private final List<Attraction> attractions;
 	
 	private Building(Builder builder) {
@@ -48,9 +48,9 @@ public class Building implements Serializable {
 	}
 	
 	/**
-	 * Returns the drawable IDs of the photos of this building.
+	 * Returns the {@link Photo}s of this building.
 	 */
-	public List<Integer> getPhotos() {
+	public List<Photo> getPhotos() {
 		return photos;
 	}
 	
@@ -73,11 +73,11 @@ public class Building implements Serializable {
 		private String name;
 		private String description;
 		private RectangularLocation location;
-		private List<Integer> photos;
+		private List<Photo> photos;
 		private List<Attraction> attractions;
 
 		private Builder() {
-			photos = new ArrayList<Integer>();
+			photos = new ArrayList<Photo>();
 			attractions = new ArrayList<Attraction>();
 		}
 		
@@ -106,10 +106,10 @@ public class Building implements Serializable {
 		}
 		
 		/**
-		 * Adds a photo to the building by its drawable resource ID.
+		 * Adds a {@link Photo} to the building.
 		 */
-		public Builder addPhoto(int drawableId) {
-			photos.add(drawableId);
+		public Builder addPhoto(Photo photo) {
+			photos.add(photo);
 			return this;
 		}
 		
