@@ -2,6 +2,7 @@ package org.iwuacm.iwuglasstour.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import org.iwuacm.iwuglasstour.R;
 
@@ -9,42 +10,61 @@ import org.iwuacm.iwuglasstour.R;
  * Test data for testing out the app before everything is implemented.
  */
 class TestData {
+
+	// Private stuff first because it's used by the helper methods.
+	/**
+	 * Length of random descriptions in sentences.
+	 */
+	private static final int RANDOM_DESCRIPTION_LENGTH = 2;
+	private static final List<String> LOREM_IPSUM_SENTENCES = Arrays.asList(
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Maecenas nec est volutpat, aliquet eros ac, interdum diam.",
+			"Maecenas pulvinar, dolor eu dignissim facilisis, est arcu interdum massa, nec sodales "
+					+ "ligula tellus in urna.",
+			"Cras feugiat ligula elit, eu laoreet lacus sagittis ut.",
+			"Aliquam hendrerit erat odio, sed bibendum tellus pellentesque vitae.",
+			"Proin erat sapien, vulputate sed ultrices eu, sagittis ac elit.",
+			"In hac habitasse platea dictumst.",
+			"Aliquam erat volutpat.",
+			"Etiam maximus scelerisque gravida.",
+			"Ut a urna nibh.",
+			"Phasellus id leo sed massa commodo hendrerit sed sit amet odio.",
+			"Ut vel elit et elit consectetur lacinia efficitur ac ligula.");
+	private static final Random random = new Random();
 	
-	public static final String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur "
-			+ "adipiscing elit. Aenean tempus vel leo nec feugiat. Nullam ullamcorper ipsum "
-			+ "gravida erat maximus, at mollis lacus eleifend.";
+	private static final double LOCATION_SIZE_IN_CARTESIAN = 0.001;
 	
 	public static final Photo PHOTO_1 = Photo.builder()
 			.withDrawableId(R.drawable.test_1)
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.build();
 	public static final Photo PHOTO_2 = Photo.builder()
 			.withDrawableId(R.drawable.test_2)
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.build();
 	public static final Photo PHOTO_3 = Photo.builder()
 			.withDrawableId(R.drawable.test_3)
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.build();
 	public static final Photo PHOTO_4 = Photo.builder()
 			.withDrawableId(R.drawable.test_4)
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.build();
 	
 	public static final Attraction ATTRACTION_1 = Attraction.builder()
 			.withName("Lab")
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.addPhoto(PHOTO_1)
 			.addPhoto(PHOTO_2)
 			.build();
 	public static final Attraction ATTRACTION_2 = Attraction.builder()
 			.withName("Classroom")
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.addPhoto(PHOTO_3)
 			.build();
 	public static final Attraction ATTRACTION_3 = Attraction.builder()
 			.withName("ACM Lounge")
-			.withDescription(DESCRIPTION)
+			.withDescription(generateRandomDescription())
 			.addPhoto(PHOTO_4)
 			.build();
 
@@ -82,8 +102,6 @@ class TestData {
 				.withLocation(createRectangularLocation(40.48967169335051, -88.99041920900345))
 				.build()
 			);
-	
-	private static final double LOCATION_SIZE_IN_CARTESIAN = 0.001;
 
 	/**
 	 * Creates a square {@link RectangularLocation} that is centered at the given {@code latitude}
@@ -107,7 +125,7 @@ class TestData {
 	 */
 	private static Building.Builder getCommonBuilder() {
 		return Building.builder()
-				.withDescription(DESCRIPTION)
+				.withDescription(generateRandomDescription())
 				.addAttraction(ATTRACTION_1)
 				.addAttraction(ATTRACTION_2)
 				.addAttraction(ATTRACTION_3)
@@ -115,5 +133,25 @@ class TestData {
 				.addPhoto(PHOTO_2)
 				.addPhoto(PHOTO_3)
 				.addPhoto(PHOTO_4);
+	}
+	
+	/**
+	 * Generates a random description of {@link #RANDOM_DESCRIPTION_LENGTH} consecutive sentences
+	 * from Lorem Ipsum.
+	 */
+	private static String generateRandomDescription() {
+		int firstSentenceIndex =
+				random.nextInt(LOREM_IPSUM_SENTENCES.size() + 1 - RANDOM_DESCRIPTION_LENGTH);
+
+		StringBuilder description = new StringBuilder();
+		for (int i = 0; i < RANDOM_DESCRIPTION_LENGTH; i++) {
+			if (i != 0) {
+				description.append(" ");
+			}
+
+			description.append(LOREM_IPSUM_SENTENCES.get(firstSentenceIndex + i));
+		}
+		
+		return description.toString();
 	}
 }
