@@ -68,17 +68,21 @@ public class Building implements Serializable {
 		return new Builder();
 	}
 	
+	/**
+	 * Builder to create a new instance of {@link Building}.
+	 */
 	public static class Builder {
 		
+		private final List<Photo> photos;
+		private final List<Attraction> attractions;
+
 		private String name;
 		private String description;
 		private RectangularLocation location;
-		private List<Photo> photos;
-		private List<Attraction> attractions;
 
 		private Builder() {
-			photos = new ArrayList<Photo>();
-			attractions = new ArrayList<Attraction>();
+			this.photos = new ArrayList<Photo>();
+			this.attractions = new ArrayList<Attraction>();
 		}
 		
 		/**

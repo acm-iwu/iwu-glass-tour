@@ -35,6 +35,9 @@ public class Photo implements Serializable {
 		return new Builder();
 	}
 	
+	/**
+	 * Builder to create a new instance of {@link Photo}.
+	 */
 	public static class Builder {
 		
 		private Integer drawableId;

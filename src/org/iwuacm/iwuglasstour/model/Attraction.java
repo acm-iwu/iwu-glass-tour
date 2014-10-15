@@ -49,6 +49,9 @@ public class Attraction implements Serializable {
 		return new Builder();
 	}
 	
+	/**
+	 * Builder to create a new instance of {@link Attraction}.
+	 */
 	public static class Builder {
 
 		private final List<Photo> photos;
