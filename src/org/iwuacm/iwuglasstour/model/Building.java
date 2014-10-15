@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Building implements Serializable {
 	private final String name;
 	private final String description;
 	private final RectangularLocation location;
+	private final List<Attraction> attractions;
 	
 	// TODO: Add remainder of model.
 
@@ -21,6 +23,7 @@ public class Building implements Serializable {
 		this.name = builder.name;
 		this.description = builder.description;
 		this.location = builder.location;
+		this.attractions = builder.attractions;
 	}
 	
 	/**
@@ -31,7 +34,7 @@ public class Building implements Serializable {
 	}
 	
 	/**
-	 * Returns a description of the building.
+	 * Returns a description of the building (if present).
 	 */
 	public String getDescription() {
 		return description;
@@ -42,6 +45,13 @@ public class Building implements Serializable {
 	 */
 	public RectangularLocation getLocation() {
 		return location;
+	}
+	
+	/**
+	 * Returns the attractions in the building (if present).
+	 */
+	public List<Attraction> getAttractions() {
+		return attractions;
 	}
 	
 	/**
@@ -56,6 +66,7 @@ public class Building implements Serializable {
 		private String name;
 		private String description;
 		private RectangularLocation location;
+		private List<Attraction> attractions;
 
 		private Builder() {}
 		
@@ -80,6 +91,18 @@ public class Building implements Serializable {
 		 */
 		public Builder withLocation(RectangularLocation location) {
 			this.location = location;
+			return this;
+		}
+		
+		/**
+		 * Adds an {@link Attraction} to the building.
+		 */
+		public Builder addAttraction(Attraction attraction) {
+			if (attractions == null) {
+				attractions = new ArrayList<Attraction>();
+			}
+
+			attractions.add(attraction);
 			return this;
 		}
 		

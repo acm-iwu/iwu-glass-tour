@@ -8,48 +8,45 @@ import java.util.List;
  */
 class TestData {
 	
-	public static final String TEST_DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur "
+	public static final String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur "
 			+ "adipiscing elit. Aenean tempus vel leo nec feugiat. Nullam ullamcorper ipsum "
 			+ "gravida erat maximus, at mollis lacus eleifend.";
+	
+	public static final Attraction ATTRACTION_1 = new Attraction("Lab", DESCRIPTION);
+	public static final Attraction ATTRACTION_2 = new Attraction("Classroom", DESCRIPTION);
+	public static final Attraction ATTRACTION_3 = new Attraction("ACM Lounge", DESCRIPTION);
 
 	/**
 	 * Sample list of buildings. Their locations use {@link #createRectangularLocation}, so they
 	 * will just be equivalently sized squares centered at about where they're actually centered.
 	 */
 	public static final List<Building> BUILDINGS = Arrays.asList(
-			Building.builder()
+			getCommonBuilder()
 				.withName("Center for Natural Sciences")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.49157691582489, -88.99231284856796))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("Center for Liberal Arts")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.49180537570156, -88.9907893538475))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("Memorial Center")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.49081809708109, -88.99275809526443))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("Buck Memorial Library")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.48987160146062, -88.99198561906815))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("State Farm Hall")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.49126686189105, -88.99119704961777))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("The Ames Library")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.48890469344348, -88.99117559194565))
 				.build(),
-			Building.builder()
+			getCommonBuilder()
 				.withName("Presser Hall")
-				.withDescription(TEST_DESCRIPTION)
 				.withLocation(createRectangularLocation(40.48967169335051, -88.99041920900345))
 				.build()
 			);
@@ -70,5 +67,17 @@ class TestData {
 				new Location(latitude + halfLocationSize, longitude - halfLocationSize),
 				new Location(latitude + halfLocationSize, longitude + halfLocationSize),
 				new Location(latitude - halfLocationSize, longitude + halfLocationSize));
+	}
+	
+	/**
+	 * Returns a common {@link Building.Builder} with data that's the same for each test
+	 * {@link Building}.
+	 */
+	private static Building.Builder getCommonBuilder() {
+		return Building.builder()
+				.withDescription(DESCRIPTION)
+				.addAttraction(ATTRACTION_1)
+				.addAttraction(ATTRACTION_2)
+				.addAttraction(ATTRACTION_3);
 	}
 }
