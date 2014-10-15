@@ -48,7 +48,7 @@ public class Building implements Serializable {
 	}
 	
 	/**
-	 * Returns the attractions in the building (if present).
+	 * Returns the attractions in the building.
 	 */
 	public List<Attraction> getAttractions() {
 		return attractions;
@@ -68,7 +68,9 @@ public class Building implements Serializable {
 		private RectangularLocation location;
 		private List<Attraction> attractions;
 
-		private Builder() {}
+		private Builder() {
+			attractions = new ArrayList<Attraction>();
+		}
 		
 		/**
 		 * Sets the name of the building.
@@ -98,10 +100,6 @@ public class Building implements Serializable {
 		 * Adds an {@link Attraction} to the building.
 		 */
 		public Builder addAttraction(Attraction attraction) {
-			if (attractions == null) {
-				attractions = new ArrayList<Attraction>();
-			}
-
 			attractions.add(attraction);
 			return this;
 		}

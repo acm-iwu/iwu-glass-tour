@@ -11,6 +11,8 @@ public class Attraction implements Serializable {
 	
 	private final String name;
 	private final String description;
+	
+	// TODO: Add photos.
 
 	public Attraction(String name, String description) {
 		this.name = name;
