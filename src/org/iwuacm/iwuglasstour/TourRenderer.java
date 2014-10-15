@@ -24,7 +24,7 @@ public class TourRenderer implements DirectRenderingCallback {
 	
 	private final BuildingLocationManager buildingLocationManager;
 	private final OutsideView outsideView;
-	private final InsideView infoView;
+	private final InsideView insideView;
 	
 	private final BuildingLocationManager.Listener buildingLocationListener =
 			new BuildingLocationManager.Listener() {
@@ -68,10 +68,10 @@ public class TourRenderer implements DirectRenderingCallback {
 	public TourRenderer(Context context, BuildingLocationManager buildingLocationManager) {
 		this.buildingLocationManager = buildingLocationManager;
 		this.outsideView = new OutsideView(context);
-		this.infoView = new InsideView(context);
+		this.insideView = new InsideView(context);
 		
 		outsideView.setListener(createViewChangeListenerFor(outsideView));
-		infoView.setListener(createViewChangeListenerFor(infoView));
+		insideView.setListener(createViewChangeListenerFor(insideView));
 
 		renderingPaused = false;
 		isRendering = false;
@@ -95,9 +95,9 @@ public class TourRenderer implements DirectRenderingCallback {
         int measuredWidth = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
         int measuredHeight = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
         
-        infoView.measure(measuredWidth, measuredHeight);
-        infoView.layout(
-        		0, 0, infoView.getMeasuredWidth(), infoView.getMeasuredHeight());
+        insideView.measure(measuredWidth, measuredHeight);
+        insideView.layout(
+        		0, 0, insideView.getMeasuredWidth(), insideView.getMeasuredHeight());
 
         outsideView.measure(measuredWidth, measuredHeight);
         outsideView.layout(
@@ -135,7 +135,9 @@ public class TourRenderer implements DirectRenderingCallback {
 			buildingLocationManager.addListener(buildingLocationListener);
 
 			isInside = buildingLocationManager.isInsideBuilding();
-			if (!isInside) {
+			if (isInside) {
+				insideView.setBuilding(buildingLocationManager.getBuildingInside());
+			} else {
 				outsideView.setNearbyBuildings(
 						buildingLocationManager.getLeftBuilding(),
 						buildingLocationManager.getFrontBuilding(),
@@ -178,7 +180,7 @@ public class TourRenderer implements DirectRenderingCallback {
 	 * Returns the active view depending on whether the user is inside or outside a building.
 	 */
 	private View getActiveView() {
-        return isInside ? infoView : outsideView;
+        return isInside ? insideView : outsideView;
 	}
 	
 	/**
@@ -190,7 +192,7 @@ public class TourRenderer implements DirectRenderingCallback {
 		return new ViewChangeListener() {
 			@Override
 			public void onChange() {
-				if ((isInside && (view == infoView)) || (!isInside && (view == outsideView))) {
+				if ((isInside && (view == insideView)) || (!isInside && (view == outsideView))) {
 					draw();
 				}
 			}
