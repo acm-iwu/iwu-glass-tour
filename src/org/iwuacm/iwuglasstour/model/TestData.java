@@ -3,6 +3,8 @@ package org.iwuacm.iwuglasstour.model;
 import java.util.Arrays;
 import java.util.List;
 
+import org.iwuacm.iwuglasstour.R;
+
 /**
  * Test data for testing out the app before everything is implemented.
  */
@@ -15,6 +17,11 @@ class TestData {
 	public static final Attraction ATTRACTION_1 = new Attraction("Lab", DESCRIPTION);
 	public static final Attraction ATTRACTION_2 = new Attraction("Classroom", DESCRIPTION);
 	public static final Attraction ATTRACTION_3 = new Attraction("ACM Lounge", DESCRIPTION);
+	
+	public static final int PHOTO_1 = R.drawable.test_1;
+	public static final int PHOTO_2 = R.drawable.test_2;
+	public static final int PHOTO_3 = R.drawable.test_3;
+	public static final int PHOTO_4 = R.drawable.test_4;
 
 	/**
 	 * Sample list of buildings. Their locations use {@link #createRectangularLocation}, so they
@@ -78,6 +85,10 @@ class TestData {
 				.withDescription(DESCRIPTION)
 				.addAttraction(ATTRACTION_1)
 				.addAttraction(ATTRACTION_2)
-				.addAttraction(ATTRACTION_3);
+				.addAttraction(ATTRACTION_3)
+				.addPhoto(PHOTO_1)
+				.addPhoto(PHOTO_2)
+				.addPhoto(PHOTO_3)
+				.addPhoto(PHOTO_4);
 	}
 }
