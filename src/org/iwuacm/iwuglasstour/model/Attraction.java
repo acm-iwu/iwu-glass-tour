@@ -29,7 +29,7 @@ public class Attraction implements Serializable {
 	}
 	
 	/**
-	 * Returns a description of this attraction.
+	 * Returns a description of this attraction(may be empty).
 	 */
 	public String getDescription() {
 		return description;
