@@ -75,30 +75,37 @@ class TestData {
 	public static final List<Building> BUILDINGS = Arrays.asList(
 			getCommonBuilder()
 				.withName("Center for Natural Sciences")
+				.withShortName("CNS")
 				.withLocation(createRectangularLocation(40.49157691582489, -88.99231284856796))
 				.build(),
 			getCommonBuilder()
 				.withName("Center for Liberal Arts")
+				.withShortName("CLA")
 				.withLocation(createRectangularLocation(40.49180537570156, -88.9907893538475))
 				.build(),
 			getCommonBuilder()
 				.withName("Memorial Center")
+				.withShortName("Memorial Ctr.")
 				.withLocation(createRectangularLocation(40.49081809708109, -88.99275809526443))
 				.build(),
 			getCommonBuilder()
 				.withName("Buck Memorial Library")
+				.withShortName("Buck")
 				.withLocation(createRectangularLocation(40.48987160146062, -88.99198561906815))
 				.build(),
 			getCommonBuilder()
 				.withName("State Farm Hall")
+				.withShortName("SFH")
 				.withLocation(createRectangularLocation(40.49126686189105, -88.99119704961777))
 				.build(),
 			getCommonBuilder()
 				.withName("The Ames Library")
+				.withShortName("Ames")
 				.withLocation(createRectangularLocation(40.48890469344348, -88.99117559194565))
 				.build(),
 			getCommonBuilder()
 				.withName("Presser Hall")
+				.withShortName("Presser")
 				.withLocation(createRectangularLocation(40.48967169335051, -88.99041920900345))
 				.build()
 			);

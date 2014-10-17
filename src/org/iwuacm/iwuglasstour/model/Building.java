@@ -13,6 +13,7 @@ public class Building implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private final String name;
+	private final String shortName;
 	private final String description;
 	private final RectangularLocation location;
 	private final List<Photo> photos;
@@ -20,6 +21,7 @@ public class Building implements Serializable {
 	
 	private Building(Builder builder) {
 		this.name = builder.name;
+		this.shortName = builder.shortName;
 		this.description = builder.description;
 		this.location = builder.location;
 		this.photos = builder.photos;
@@ -27,10 +29,17 @@ public class Building implements Serializable {
 	}
 	
 	/**
-	 * Returns the name of the building.
+	 * Returns the full name of the building.
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * Returns a shorter version (e.g., acronym) of the building's name.
+	 */
+	public String getShortName() {
+		return shortName;
 	}
 	
 	/**
@@ -77,6 +86,7 @@ public class Building implements Serializable {
 		private final List<Attraction> attractions;
 
 		private String name;
+		private String shortName;
 		private String description;
 		private RectangularLocation location;
 
@@ -86,10 +96,18 @@ public class Building implements Serializable {
 		}
 		
 		/**
-		 * Sets the name of the building.
+		 * Sets the full name of the building.
 		 */
 		public Builder withName(String name) {
 			this.name = name;
+			return this;
+		}
+		
+		/**
+		 * Sets a shorter version (e.g., acronym) of the building's name.
+		 */
+		public Builder withShortName(String shortName) {
+			this.shortName = shortName;
 			return this;
 		}
 		
@@ -131,7 +149,7 @@ public class Building implements Serializable {
 		 * @throws IllegalArgumentException if any necessary fields are not included
 		 */
 		public Building build() {
-			List<Object> requiredFields = Arrays.<Object>asList(name, location);
+			List<Object> requiredFields = Arrays.<Object>asList(name, shortName, location);
 			for (Object field : requiredFields) {
 				if (field == null) {
 					throw new IllegalArgumentException();
