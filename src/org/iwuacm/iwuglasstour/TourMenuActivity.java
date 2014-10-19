@@ -17,9 +17,15 @@ public class TourMenuActivity extends Activity {
 	 */
 	public static final String ACTIVE_BUILDING_MODEL = "activeBuildingModel";
 	
+	/**
+	 * The {@link Intent} extra that specifies whether a user is inside a building.
+	 */
+	public static final String IS_INSIDE = "isInside";
+	
 	private final Handler handler;
 	
 	private Building activeBuilding;
+	private boolean isInside;
 	
 	public TourMenuActivity() {
 		this.handler = new Handler();
@@ -44,7 +50,9 @@ public class TourMenuActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		MenuItem infoItem = menu.findItem(R.id.building_info);
 
-		activeBuilding = (Building) getIntent().getSerializableExtra(ACTIVE_BUILDING_MODEL);
+		Intent intent = getIntent();
+		activeBuilding = (Building) intent.getSerializableExtra(ACTIVE_BUILDING_MODEL);
+		isInside = intent.getBooleanExtra(IS_INSIDE, false);
 		if (activeBuilding == null) {
 			infoItem.setVisible(false);
 		} else {
@@ -80,6 +88,7 @@ public class TourMenuActivity extends Activity {
 					public void run() {
 						Intent intent = new Intent(TourMenuActivity.this, InfoActivity.class);
 						intent.putExtra(InfoActivity.BUILDING_MODEL, activeBuilding);
+						intent.putExtra(InfoActivity.IS_INSIDE, isInside);
 						startActivity(intent);
 					}
 				});

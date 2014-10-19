@@ -37,11 +37,13 @@ public class TourService extends Service {
 				@Override
 				public void onExitBuilding() {
 					setActiveBuilding(buildingLocationManager.getFrontBuilding());
+					setIsInside(false);
 				}
 				
 				@Override
 				public void onEnterBuilding(Building building) {
 					setActiveBuilding(building);
+					setIsInside(true);
 				}
 
 				@Override
@@ -90,6 +92,7 @@ public class TourService extends Service {
 						? buildingLocationManager.getBuildingInside()
 						: buildingLocationManager.getFrontBuilding(),
 					false);
+			setIsInside(buildingLocationManager.isInsideBuilding(), false);
             liveCard.setAction(updatePendingIntent());
 
 			liveCard.attach(this);
@@ -133,6 +136,22 @@ public class TourService extends Service {
 		} else {
 			menuIntent.putExtra(TourMenuActivity.ACTIVE_BUILDING_MODEL, activeBuilding);
 		}
+
+		if (updatePendingIntent) {
+			updatePendingIntent();
+		}
+	}
+	
+	/**
+	 * Changes whether the user is inside for the pending intent, so that the menu will reflect the
+	 * changes.
+	 */
+	private void setIsInside(boolean isInside) {
+		setIsInside(isInside, true);
+	}
+
+	private void setIsInside(boolean isInside, boolean updatePendingIntent) {
+		menuIntent.putExtra(TourMenuActivity.IS_INSIDE, isInside);
 
 		if (updatePendingIntent) {
 			updatePendingIntent();

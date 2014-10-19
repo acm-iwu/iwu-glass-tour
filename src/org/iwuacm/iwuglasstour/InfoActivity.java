@@ -4,6 +4,7 @@ import org.iwuacm.iwuglasstour.model.Building;
 import org.iwuacm.iwuglasstour.view.InfoView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 /**
@@ -17,12 +18,19 @@ public class InfoActivity extends Activity {
 	 */
 	public static final String BUILDING_MODEL = "buildingModel";
 	
+	/**
+	 * Key for the {@link Intent}'s extra specifying whether the user is inside a building.
+	 */
+	public static final String IS_INSIDE = "isInside";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		Building building = (Building) getIntent().getSerializableExtra(BUILDING_MODEL);
+		Intent intent = getIntent();
+		Building building = (Building) intent.getSerializableExtra(BUILDING_MODEL);
+		boolean showDescriptionCardFirst = !intent.getBooleanExtra(IS_INSIDE, false);
 
-		setContentView(new InfoView(building, this));
+		setContentView(new InfoView(building, showDescriptionCardFirst, this));
 	}
 }

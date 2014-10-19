@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 public class InfoView extends CardScrollView {
 
 	private final List<CardBuilder> cards;
+	private final boolean showDescriptionCardFirst;
 	
 	private final CardScrollAdapter cardScrollAdapter = new CardScrollAdapter() {
 		@Override
@@ -43,23 +44,41 @@ public class InfoView extends CardScrollView {
 		public View getView(int index, View convertView, ViewGroup parent) {
 			return cards.get(index).getView(convertView, parent);
 		}
+		
+		@Override
+		public int getHomePosition() {
+			return showDescriptionCardFirst ? 0 : 1;
+		}
 	};
 	
-	public InfoView(Building building, Context context) {
-		this(building, context, null, 0);
+	public InfoView(Building building, boolean showDescriptionCardFirst, Context context) {
+		this(building, showDescriptionCardFirst, context, null, 0);
 	}
 	
-	public InfoView(Building building, Context context, AttributeSet attrs) {
-		this(building, context, attrs, 0);
+	public InfoView(
+			Building building,
+			boolean showDescriptionCardFirst,
+			Context context,
+			AttributeSet attrs) {
+
+		this(building, showDescriptionCardFirst, context, attrs, 0);
 	}
 	
-	public InfoView(Building building, Context context, AttributeSet attrs, int defStyle) {
+	public InfoView(
+			Building building,
+			boolean showDescriptionCardFirst,
+			Context context,
+			AttributeSet attrs,
+			int defStyle) {
+
 		super(context, attrs, defStyle);
 		
 		this.cards = createCards(building, context);
+		this.showDescriptionCardFirst = showDescriptionCardFirst;
 		
 		setAdapter(cardScrollAdapter);
 		activate();
+		setSelection(cardScrollAdapter.getHomePosition());
 	}
 	
 	/**
