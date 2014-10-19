@@ -6,6 +6,7 @@ import java.util.List;
 import org.iwuacm.iwuglasstour.model.Attraction;
 import org.iwuacm.iwuglasstour.model.Building;
 import org.iwuacm.iwuglasstour.model.Photo;
+import org.iwuacm.iwuglasstour.view.common.CardBuilders;
 
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
@@ -87,27 +88,22 @@ public class InfoView extends CardScrollView {
 	 */
 	private List<CardBuilder> createCards(Building building, Context context) {
 		List<CardBuilder> cards = new ArrayList<CardBuilder>();
+		cards.add(CardBuilders.getBuildingDescriptionCard(building, context));
+
 		List<CardBuilder> buildingPhotos = new ArrayList<CardBuilder>();
-		
-		CardBuilder newCard = new CardBuilder(context, CardBuilder.Layout.AUTHOR)
-				.setHeading(building.getName());
-				if(building.getDescription() != null){
-					newCard.setText(building.getDescription());
-				}			
-				for(Photo photo : building.getPhotos()){
-					if(photo.getDescription() != null){
-						CardBuilder captionedPhoto = new CardBuilder(context, CardBuilder.Layout.AUTHOR)
-								.addImage(photo.getDrawableId())
-								.setText(photo.getDescription());
-						newCard.addImage(photo.getDrawableId());
-						buildingPhotos.add(captionedPhoto);
-					}else{
-						newCard.addImage(photo.getDrawableId());
-					}
-				}
-		cards.add(newCard);
+		for (Photo photo : building.getPhotos()) {
+			if (photo.getDescription() != null) {
+				CardBuilder captionedPhoto = new CardBuilder(context, CardBuilder.Layout.CAPTION)
+						.addImage(photo.getDrawableId())
+						.setText(photo.getDescription())
+						.setFootnote(building.getName());
+				buildingPhotos.add(captionedPhoto);
+			}
+		}
+
 		cards.addAll(createAttractions(building.getAttractions(), context));
 		cards.addAll(buildingPhotos);
+
 		return cards;
 	}
 	/**
@@ -119,16 +115,20 @@ public class InfoView extends CardScrollView {
 		List<CardBuilder> attractionCards = new ArrayList<CardBuilder>();
 		
 		for(Attraction attraction : attractions){
-			CardBuilder newCard = new CardBuilder(context, CardBuilder.Layout.AUTHOR)
-					.setHeading(attraction.getName());
-					if(attraction.getDescription() != null){
-						newCard.setText(attraction.getDescription());
-					}
-					for(Photo photo : attraction.getPhotos()){
-							newCard.addImage(photo.getDrawableId());
-							newCard.setHeading(attraction.getName());
-							newCard.setText(photo.getDescription());
-					}
+			CardBuilder.Layout layout =
+					attraction.getPhotos().isEmpty()
+							? CardBuilder.Layout.TEXT
+							: CardBuilder.Layout.COLUMNS;
+
+			CardBuilder newCard = new CardBuilder(context, layout)
+					.setFootnote(attraction.getName());
+
+			if (attraction.getDescription() != null){
+				newCard.setText(attraction.getDescription());
+			}
+			
+			CardBuilders.addPhotos(attraction.getPhotos(), newCard);
+
 			attractionCards.add(newCard);
 		}
 		return attractionCards;
