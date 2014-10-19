@@ -17,7 +17,7 @@ public class CardBuilders {
 	/**
 	 * Creates a card that describes a {@link Building} with its name, description, and photos.
 	 */
-	public static CardBuilder getBuildingDescriptionCard(Building building, Context context) {
+	public static CardBuilder createBuildingDescriptionCard(Building building, Context context) {
 		CardBuilder card = new CardBuilder(context, CardBuilder.Layout.TEXT)
 				.setFootnote(building.getName());
 		

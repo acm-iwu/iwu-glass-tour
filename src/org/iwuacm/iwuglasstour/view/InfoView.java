@@ -88,7 +88,7 @@ public class InfoView extends CardScrollView {
 	 */
 	private List<CardBuilder> createCards(Building building, Context context) {
 		List<CardBuilder> cards = new ArrayList<CardBuilder>();
-		cards.add(CardBuilders.getBuildingDescriptionCard(building, context));
+		cards.add(CardBuilders.createBuildingDescriptionCard(building, context));
 
 		List<CardBuilder> buildingPhotos = new ArrayList<CardBuilder>();
 		for (Photo photo : building.getPhotos()) {
