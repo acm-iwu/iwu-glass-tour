@@ -15,11 +15,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -29,7 +29,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -39,7 +39,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -64,11 +64,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -78,7 +78,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -88,7 +88,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -113,11 +113,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -127,7 +127,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -137,7 +137,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -162,11 +162,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -176,7 +176,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -186,7 +186,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -211,11 +211,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -225,7 +225,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -235,7 +235,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -260,11 +260,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -274,7 +274,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -284,7 +284,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -309,11 +309,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -323,7 +323,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -333,7 +333,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -358,11 +358,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -372,7 +372,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -382,7 +382,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -405,11 +405,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -419,7 +419,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -429,7 +429,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -452,11 +452,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -466,7 +466,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -476,7 +476,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -498,11 +498,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -512,7 +512,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -522,7 +522,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -544,11 +544,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -558,7 +558,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -568,7 +568,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -590,11 +590,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -604,7 +604,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -614,7 +614,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -636,11 +636,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -650,7 +650,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -660,7 +660,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -682,11 +682,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -696,7 +696,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -706,7 +706,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -728,11 +728,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -742,7 +742,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -752,7 +752,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -774,11 +774,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -788,7 +788,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -798,7 +798,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
@@ -820,11 +820,11 @@
         ],
         "photos": [
             {
-                "drawableId": "@drawable/test_1",
+                "drawableName": "test_1",
                 "description": "Blah"
             },
             {
-                "drawableId": "@drawable/test_2",
+                "drawableName": "test_2",
                 "description": "Blah"
             }
         ],
@@ -834,7 +834,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_3",
+                        "drawableName": "test_3",
                         "description": "Blah"
                     }
                 ]
@@ -844,7 +844,7 @@
                 "description": "Blah",
                 "photos": [
                     {
-                        "drawableId": "@drawable/test_4",
+                        "drawableName": "test_4",
                         "description": "Blah"
                     }
                 ]
