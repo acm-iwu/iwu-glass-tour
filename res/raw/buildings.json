@@ -1,4 +1,441 @@
 [
+{
+        "name": "Joyce Eichhorn Ames School of Art Building",
+        "shortName": "Art",
+        "description": "The Joyce Eichhorn Ames School of Art",
+        "location": [
+            {
+                "latitude": 40.489741,
+                "longitude": -88.991483
+            },
+            {
+                "latitude": 40.489284,
+                "longitude": -88.9921
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building1AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building1AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "The Ames Library",
+        "shortName": "Ames",
+        "description": "After a two-year construction period, The Ames Library was opened in January 2002. With five levels and 103,000-square feet of space, the building is grand and imposing on the outside but warm, spacious and inviting within.",
+        "location": [
+            {
+                "latitude": 40.489096,
+                "longitude": -88.99164
+            },
+            {
+                "latitude": 40.488661,
+                "longitude": -88.990832
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building2AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building2AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Buck Memorial Library",
+        "shortName": "Buck",
+        "description": "Buck Memorial Library houses the language departments, Language Resource Center and The Writing Center. Computer ",
+        "location": [
+            {
+                "latitude": 40.489964,
+                "longitude": -88.991803
+            },
+            {
+                "latitude": 40.489792,
+                "longitude": -88.992181
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building3AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building3AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Center for Liberal Arts",
+        "shortName": "CLA",
+        "description": "The Center for Liberal Arts houses the departments of political science, history, sociology and anthropology, ",
+        "location": [
+            {
+                "latitude": 40.491705,
+                "longitude": -88.990426
+            },
+            {
+                "latitude": 40.491897,
+                "longitude": -88.991134
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building4AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building4AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Center for Natural Science",
+        "shortName": "CNS",
+        "description": "The Center for Natural Sciences houses the departments of biology, chemistry, physics, mathematics, computer ",
+        "location": [
+            {
+                "latitude": 40.491884,
+                "longitude": -88.991729
+            },
+            {
+                "latitude": 40.491373,
+                "longitude": -88.992944
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building5AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building5AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Evelyn Chapel",
+        "shortName": "Chapel",
+        "description": "Constructed in 1984, is the center of campus religious activity and the location of offices of the University ",
+        "location": [
+            {
+                "latitude": 40.490481,
+                "longitude": -88.989476
+            },
+            {
+                "latitude": 40.490344,
+                "longitude": -88.989845
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building6AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building6AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Hansen Student Center",
+        "shortName": "Hansen",
+        "description": "Hansen Student Center hosts many campus activities on its Center Court. The renovated facility also houses offices ",
+        "location": [
+            {
+                "latitude": 40.492283,
+                "longitude": -88.99043
+            },
+            {
+                "latitude": 40.49298,
+                "longitude": -88.989636
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building7AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building7AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    
+    
+    {
+        "name": "Holmes Hall",
+        "shortName": "Holmes",
+        "description": "Holmes Hall houses many administrative offices, including the Dean of Students, Business Office, Financial Aid, ",
+        "location": [
+            {
+                "latitude": 40.491389,
+                "longitude": -88.990235
+            },
+            {
+                "latitude": 40.491059,
+                "longitude": -88.99074
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building8AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building8AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Mark Evans Observatory",
+        "shortName": "Observatory",
+        "description": "The Mark Evans Observatory, completed in 1970, gained a new telescope and charge-coupled device (CCD) camera in ",
+        "location": [
+            {
+                "latitude": 40.491642,
+                "longitude": -88.99049
+            },
+            {
+                "latitude": 40.491536,
+                "longitude": -88.990654
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "building9AT1",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "building9AT2",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    },
 	{
         "name": "McPherson Theatre",
         "shortName": "McPherson",
