@@ -1,0 +1,417 @@
+[
+	{
+        "name": "McPherson Theatre",
+        "shortName": "McPherson",
+        "description": "McPherson Hall, completed in 1963, is named for IWU's 10th president, Harry W. McPherson, who served from 1932-37. It is the home of the School of Theatre Arts, containing a 300-seat theatre, scene shop, classrooms, and other facilities.",
+        "location": [
+            {
+                "latitude": 40.489664,
+                "longitude": -88.990978
+            },
+            {
+                "latitude": 40.489382,
+                "longitude": -88.991407
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Memorial Center",
+        "shortName": "Memorial Ctr",
+        "description": "The Memorial Center features Young Main Lounge and Joslin Atrium event spaces. It is home to campus dining services, including the main student dining room (Berholf Commons), plus the Coffee Shoppe and Dugout cafeteria.",
+        "location": [
+            {
+                "latitude": 40.491153,
+                "longitude": -88.992474
+            },
+            {
+                "latitude": 40.490408,
+                "longitude": -88.993076
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Myers Welcome Center",
+        "shortName": "Welcome Ctr.",
+        "description": "The Minor Myers, jr. Welcome Center is home to the Admissions Office and Hart Career Center.",
+        "location": [
+            {
+                "latitude": 40.489665,
+                "longitude": -88.989867
+            },
+            {
+                "latitude": 40.490052,
+                "longitude": -88.989576
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "President's House",
+        "shortName": "President",
+        "description": "Home to presidents of the University and their families since its completion in 1968.",
+        "location": [
+            {
+                "latitude": 40.48944425,
+                "longitude": -88.98970239
+            },
+            {
+                "latitude": 40.48924842,
+                "longitude": -88.98947306
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Presser Hall",
+        "shortName": "Presser",
+        "description": "Presser Hall, constructed in 1929-30, houses IWU's School of Music. Its 550-seat Westbrook Auditorium contains a Schantz three-manual pipe organ. Other facilities include studios, practice rooms, classrooms and listening rooms.",
+        "location": [
+            {
+                "latitude": 40.489831,
+                "longitude": -88.990193
+            },
+            {
+                "latitude": 40.489396,
+                "longitude": -88.990877
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Shaw Hall",
+        "shortName": "Shaw",
+        "description": "Shaw Hall, which contains administrative offices, opened in 1954. It is named for William Edward Shaw, 12th president of IWU, who served from 1939-47.",
+        "location": [
+            {
+                "latitude": 40.491061,
+                "longitude": -88.990257
+            },
+            {
+                "latitude": 40.490653,
+                "longitude": -88.990531
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Shirk Center",
+        "shortName": "Shirk",
+        "description": "The Shirk Center for Athletics and Recreation includes a performance arena for basketball, volleyball and other events, plus indoor track and field facilities, a practice gymnasium, and a fitness center.",
+        "location": [
+            {
+                "latitude": 40.494065,
+                "longitude": -88.988737
+            },
+            {
+                "latitude": 40.493217,
+                "longitude": -88.990604
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "State Farm Hall",
+        "shortName": "SFH",
+        "description": "Opened in fall 2013, State Farm Hall is a 48,700-square-foot facility with state-of-the-art classrooms, study areas and research spaces. It also houses offices for the departments of Business Administration and Economics.",
+        "location": [
+            {
+                "latitude": 40.491175,
+                "longitude": -88.990906
+            },
+            {
+                "latitude": 40.491499,
+                "longitude": -88.991493
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }, {
+        "name": "Stevenson Hall (School of Nursing)",
+        "shortName": "Stevenson",
+        "description": "Stevenson Hall houses the School of Nursing and the Andrew W. Mellon Center for Teaching and Curriculum Development, a facility dedicated to the improvement of undergraduate education.",
+        "location": [
+            {
+                "latitude": 40.49131,
+                "longitude": -88.991673
+            },
+            {
+                "latitude": 40.491098,
+                "longitude": -88.992011
+            }
+        ],
+        "photos": [
+            {
+                "drawableId": "@drawable/test_1",
+                "description": "Blah"
+            },
+            {
+                "drawableId": "@drawable/test_2",
+                "description": "Blah"
+            }
+        ],
+        "attractions": [
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_3",
+                        "description": "Blah"
+                    }
+                ]
+            },
+            {
+                "name": "Lab",
+                "description": "Blah",
+                "photos": [
+                    {
+                        "drawableId": "@drawable/test_4",
+                        "description": "Blah"
+                    }
+                ]
+            }
+        ]
+    }	
+]
