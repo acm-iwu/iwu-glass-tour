@@ -7,6 +7,8 @@ import org.iwuacm.iwuglasstour.view.ViewChangeListener;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.hardware.Camera;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.View;
@@ -64,6 +66,8 @@ public class TourRenderer implements DirectRenderingCallback {
 	private boolean isRendering;
 	private SurfaceHolder holder;
 	private boolean isInside;
+	// TODO: Release camera on shutter press.
+	private Camera camera;
 	
 	public TourRenderer(Context context, BuildingLocationManager buildingLocationManager) {
 		this.buildingLocationManager = buildingLocationManager;
@@ -134,6 +138,9 @@ public class TourRenderer implements DirectRenderingCallback {
 			buildingLocationManager.startTracking();
 			buildingLocationManager.addListener(buildingLocationListener);
 
+			camera = getCameraInstance();
+			outsideView.setCameraInstance(camera);
+			
 			isInside = buildingLocationManager.isInsideBuilding();
 			if (isInside) {
 				insideView.setBuilding(buildingLocationManager.getBuildingInside());
@@ -149,6 +156,12 @@ public class TourRenderer implements DirectRenderingCallback {
 			buildingLocationManager.removeListener(buildingLocationListener);
 
 			outsideView.stopRendering();
+			
+			if (camera != null) {
+				outsideView.setCameraInstance(null);
+				camera.release();
+				camera = null;
+			}
 		}
 	}
 	
@@ -197,5 +210,18 @@ public class TourRenderer implements DirectRenderingCallback {
 				}
 			}
 		};
+	}
+	
+	/**
+	 * Retrieves a camera instance.
+	 */
+	@Nullable
+	private static Camera getCameraInstance() {
+		try {
+			return Camera.open();
+		} catch (Exception e) {
+			// Camera not available.
+			return null;
+		}
 	}
 }
