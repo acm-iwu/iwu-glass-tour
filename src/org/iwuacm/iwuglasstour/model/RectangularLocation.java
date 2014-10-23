@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.iwuacm.iwuglasstour.util.MathUtils;
@@ -155,5 +156,25 @@ public class RectangularLocation implements Serializable {
 				&& (location.getLatitude() <= northEast.getLatitude())
 				&& (location.getLongitude() >= southEast.getLongitude())
 				&& (location.getLongitude() <= northEast.getLongitude());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof RectangularLocation)) {
+			return false;
+		}
+		
+		RectangularLocation other = (RectangularLocation) o;
+		
+		return Objects.equals(northWest, other.northWest)
+				&& Objects.equals(northEast, other.northEast)
+				&& Objects.equals(southWest, other.southWest)
+				&& Objects.equals(southEast, other.southEast);
+	}
+
+	@Override
+	public String toString() {
+		return "RectangularLocation [northWest=" + northWest + ", northEast=" + northEast
+				+ ", southWest=" + southWest + ", southEast=" + southEast + "]";
 	}
 }

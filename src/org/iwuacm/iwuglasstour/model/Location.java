@@ -24,4 +24,20 @@ public class Location implements Serializable {
 	public double getLongitude() {
 		return longitude;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Location)) {
+			return false;
+		}
+		
+		Location other = (Location) o;
+		
+		return (latitude == other.latitude) && (longitude == other.longitude);
+	}
+
+	@Override
+	public String toString() {
+		return "Location [latitude=" + latitude + ", longitude=" + longitude + "]";
+	}
 }

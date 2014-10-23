@@ -3,6 +3,7 @@ package org.iwuacm.iwuglasstour.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * An attraction or interesting place within a {@link Building}.
@@ -42,6 +43,25 @@ public class Attraction implements Serializable {
 		return photos;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Attraction)) {
+			return false;
+		}
+		
+		Attraction other = (Attraction) o;
+		
+		return Objects.equals(name, other.name)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(photos, other.photos);
+	}
+	
+	@Override
+	public String toString() {
+		return "Attraction [name=" + name + ", description=" + description + ", photos=" + photos
+				+ "]";
+	}
+
 	/**
 	 * Creates a new {@link Builder}.
 	 */

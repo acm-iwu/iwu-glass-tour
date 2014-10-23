@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Photo implements Serializable {
 
@@ -28,6 +29,22 @@ public class Photo implements Serializable {
 		return description;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Photo)) {
+			return false;
+		}
+		
+		Photo other = (Photo) o;
+		
+		return (drawableId == other.drawableId) && Objects.equals(description, other.description);
+	}
+	
+	@Override
+	public String toString() {
+		return "Photo [drawableId=" + drawableId + ", description=" + description + "]";
+	}
+
 	/**
 	 * Creates a new {@link Builder}.
 	 */

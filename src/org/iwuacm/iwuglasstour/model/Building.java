@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a building on the IWU campus.
@@ -70,6 +71,29 @@ public class Building implements Serializable {
 		return attractions;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Building)) {
+			return false;
+		}
+		
+		Building other = (Building) o;
+		
+		return Objects.equals(name, other.name)
+				&& Objects.equals(shortName, other.shortName)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(location, other.location)
+				&& Objects.equals(photos, other.photos)
+				&& Objects.equals(attractions, other.attractions);
+	}
+	
+	@Override
+	public String toString() {
+		return "Building [name=" + name + ", shortName=" + shortName + ", description="
+				+ description + ", location=" + location + ", photos=" + photos + ", attractions="
+				+ attractions + "]";
+	}
+
 	/**
 	 * Returns a new {@link Builder}.
 	 */
