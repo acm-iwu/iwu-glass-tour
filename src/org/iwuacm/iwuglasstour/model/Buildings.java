@@ -2,10 +2,17 @@ package org.iwuacm.iwuglasstour.model;
 
 import java.util.List;
 
+import org.iwuacm.iwuglasstour.R;
+
 /**
  * A collection of {@link Building}s.
  */
 public class Buildings {
+	
+	/**
+	 * The resource for the buildings JSON file. This is visible for testing.
+	 */
+	static final int BUILDINGS_RAW_RESOURCE = R.raw.buildings;
 
 	private final List<Building> buildings;
 	
