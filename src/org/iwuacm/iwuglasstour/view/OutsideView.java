@@ -17,7 +17,9 @@ import android.widget.TextView;
  */
 public class OutsideView extends RelativeLayout {
 
-	private final TextView sampleText;
+	private final TextView outsideFront;
+	private final TextView outsideLeft;
+	private final TextView outsideRight;
 	
 	private ViewChangeListener listener;
 	
@@ -38,10 +40,9 @@ public class OutsideView extends RelativeLayout {
         super(context, attrs, defStyle);
         LayoutInflater.from(context).inflate(R.layout.outside, this);
         
-        this.sampleText = (TextView) findViewById(R.id.outside_front);
-
-    	// TODO: This is just here to show the view is working. Please remove.
-    	sampleText.setText("Outside view.");
+        this.outsideFront = (TextView) findViewById(R.id.outside_front);
+        this.outsideLeft = (TextView) findViewById(R.id.outside_left);
+        this.outsideRight = (TextView) findViewById(R.id.outside_right);
     	
     	camera = null;
     }
@@ -59,8 +60,9 @@ public class OutsideView extends RelativeLayout {
     public void stopRendering() {}
     
     public void setNearbyBuildings(Building left, Building front, Building right) {
-    	// TODO: Implement.
-    	
+    	outsideFront.setText(front.getName());
+    	outsideLeft.setText(left.getShortName());
+    	outsideRight.setText(right.getShortName());
     	if (listener != null) {
     		listener.onChange();
     	}
