@@ -4,8 +4,6 @@ import org.iwuacm.iwuglasstour.R;
 import org.iwuacm.iwuglasstour.model.Building;
 
 import android.content.Context;
-import android.hardware.Camera;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -20,11 +18,6 @@ public class OutsideView extends RelativeLayout {
 	private final TextView sampleText;
 	
 	private ViewChangeListener listener;
-	
-	/**
-	 * The camera instance. Note that it may not always be present so the null case must be handled.
-	 */
-	@Nullable private Camera camera;
 
     public OutsideView(Context context) {
         this(context, null, 0);
@@ -42,8 +35,6 @@ public class OutsideView extends RelativeLayout {
 
     	// TODO: This is just here to show the view is working. Please remove.
     	sampleText.setText("Outside view.");
-    	
-    	camera = null;
     }
     
     /**
@@ -72,11 +63,4 @@ public class OutsideView extends RelativeLayout {
     public void setListener(ViewChangeListener listener) {
     	this.listener = listener;
     }
-
-    /**
-     * Sets the camera instance. Can be null if no camera instance is present.
-     */
-	public void setCameraInstance(@Nullable Camera camera) {
-		this.camera = camera;
-	}
 }
