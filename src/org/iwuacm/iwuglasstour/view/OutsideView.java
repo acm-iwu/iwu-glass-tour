@@ -8,14 +8,14 @@ import android.hardware.Camera;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
  * Draws a viewfinder with an overlay of buildings in front and to the sides. Displays when the user
  * is outside of a building.
  */
-public class OutsideView extends FrameLayout {
+public class OutsideView extends RelativeLayout {
 
 	private final TextView sampleText;
 	
@@ -38,7 +38,7 @@ public class OutsideView extends FrameLayout {
         super(context, attrs, defStyle);
         LayoutInflater.from(context).inflate(R.layout.outside, this);
         
-        this.sampleText = (TextView) findViewById(R.id.outside_sample_text);
+        this.sampleText = (TextView) findViewById(R.id.outside_front);
 
     	// TODO: This is just here to show the view is working. Please remove.
     	sampleText.setText("Outside view.");

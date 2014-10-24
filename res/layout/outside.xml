@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black">
+    
+    <TextView
+        android:id="@+id/outside_front"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="54dp"
+        android:text="Center for Natural Sciences"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+     
+    <!-- Used to give left and right equal widths. -->
+   	<View
+   	    android:id="@+id/center_shim"
+   	    android:visibility="invisible"
+   	    android:layout_width="0dp"
+   	    android:layout_height="0dp"
+   	    android:layout_centerHorizontal="true"
+        android:layout_below="@id/outside_front" />
 
     <TextView
-        android:id="@+id/outside_sample_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:id="@+id/outside_left"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="160px"
-        android:gravity="center" />
+        android:textSize="32dp"
+        android:text="Memorial Ctr."
+        android:gravity="left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/outside_front"
+        android:layout_toLeftOf="@id/center_shim" />	
+
+    <TextView
+        android:id="@+id/outside_right"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dp"
+        android:text="SFH"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/outside_front"
+        android:layout_toRightOf="@id/center_shim" />	
     
-</FrameLayout>
+</RelativeLayout>
