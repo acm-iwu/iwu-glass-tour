@@ -139,8 +139,8 @@ public class BuildingsTest extends AndroidTestCase {
 					String defType,
 					String defPackage) {
 				
-				if (!defType.equals("drawable")
-						|| !defPackage.equals(defPackage.equals(PACKAGE_NAME))) {
+				
+				if (!defType.equals("drawable") || !defPackage.equals(PACKAGE_NAME)) {
 					return super.getIdentifier(name, defType, defPackage);
 				}
 				
@@ -187,15 +187,19 @@ public class BuildingsTest extends AndroidTestCase {
 		writer.name("location");
 		writer.beginArray();
 
-		writer.beginArray();
+		writer.beginObject();
+		writer.name("latitude");
 		writer.value(building.getLocation().getNorthEastCorner().getLatitude());
+		writer.name("longitude");
 		writer.value(building.getLocation().getNorthEastCorner().getLongitude());
-		writer.endArray();
+		writer.endObject();
 		
-		writer.beginArray();
+		writer.beginObject();
+		writer.name("latitude");
 		writer.value(building.getLocation().getSouthWestCorner().getLatitude());
+		writer.name("longitude");
 		writer.value(building.getLocation().getSouthWestCorner().getLongitude());
-		writer.endArray();
+		writer.endObject();
 		
 		// End location.
 		writer.endArray();
@@ -271,11 +275,11 @@ public class BuildingsTest extends AndroidTestCase {
 	 */
 	private static int retrieveDrawableIdFromFakeDrawableName(String fakeDrawableName) {
 		String prefix = fakeDrawableName.substring(0, FAKE_DRAWABLE_PREFIX.length());
-		
+
 		if (!prefix.equals(FAKE_DRAWABLE_PREFIX)) {
 			throw new IllegalArgumentException("Invalid fakeDrawableName");
 		}
 		
-		return Integer.valueOf(fakeDrawableName.substring(FAKE_DRAWABLE_PREFIX.length() + 1));
+		return Integer.valueOf(fakeDrawableName.substring(FAKE_DRAWABLE_PREFIX.length()));
 	}
 }
