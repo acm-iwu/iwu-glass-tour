@@ -66,17 +66,6 @@ public class TourMenuActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.stop_this:
-				// Perform at end of message queue for proper menu animation.
-				handler.post(new Runnable() {
-					@Override
-					public void run() {
-						stopService(new Intent(TourMenuActivity.this, TourService.class));
-					}
-				});
-
-				return true;
-			
 			case R.id.building_info:
 				if (activeBuilding == null) {
 					// Shouldn't be able to select this option.
@@ -90,6 +79,28 @@ public class TourMenuActivity extends Activity {
 						intent.putExtra(InfoActivity.BUILDING_MODEL, activeBuilding);
 						intent.putExtra(InfoActivity.IS_INSIDE, isInside);
 						startActivity(intent);
+					}
+				});
+
+				return true;
+				
+			case R.id.credits:
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						Intent intent = new Intent(TourMenuActivity.this, CreditsActivity.class);
+						startActivity(intent);
+					}
+				});
+				
+				return true;
+
+			case R.id.stop_this:
+				// Perform at end of message queue for proper menu animation.
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						stopService(new Intent(TourMenuActivity.this, TourService.class));
 					}
 				});
 

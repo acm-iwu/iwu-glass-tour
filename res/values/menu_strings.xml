@@ -2,8 +2,7 @@
 
 <resources>
 
-    <!-- TODO: Just generate this in the class. -->
-    <string name="building_info">Building Info</string>
+    <string name="credits">Credits</string>
 
     <!-- Automatically generated.  -->
     <string name="stop_this">STOP_THIS</string>

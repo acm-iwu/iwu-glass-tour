@@ -3,8 +3,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/building_info"
-        android:title="@string/building_info"
-        android:icon="@drawable/temp__ic_building_info"/>
+        android:title=""
+        android:icon="@drawable/ic_building_info"/>
+    <item
+        android:id="@+id/credits"
+        android:title="@string/credits"
+        android:icon="@drawable/ic_credits"/>
     <item
         android:id="@+id/stop_this"
         android:title="@string/stop_this"
