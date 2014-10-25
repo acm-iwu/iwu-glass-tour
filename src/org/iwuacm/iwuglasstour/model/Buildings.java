@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iwuacm.iwuglasstour.R;
+import org.iwuacm.iwuglasstour.model.common.ResourceHelpers;
 
 import android.content.Context;
 import android.util.JsonReader;
@@ -165,7 +166,8 @@ public class Buildings {
 			while(reader.hasNext()){
 				String name = reader.nextName();
 				if (name.equals("drawableName")) {
-					builder.withDrawableId(getPhotoId(reader.nextString(), context));
+					builder.withDrawableId(
+							ResourceHelpers.getPhotoId(reader.nextString(), context));
 				} else if (name.equals("description")) {
 					builder.withDescription(reader.nextString());
 				} else {
@@ -179,11 +181,6 @@ public class Buildings {
 		reader.endArray();
 		
 		return photos;
-	}
-	
-	private static int getPhotoId(String drawableName, Context context) {		
-		return context.getResources()
-				.getIdentifier(drawableName, "drawable", context.getPackageName());
 	}
 
 	private static RectangularLocation readLocation(JsonReader reader) throws IOException {
