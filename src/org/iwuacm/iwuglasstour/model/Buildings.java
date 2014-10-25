@@ -44,7 +44,7 @@ public class Buildings {
 	public static Buildings getBuildings(Context context) {
 		if (instance == null) {
 			InputStream buildingsInputStream =
-					context.getResources().openRawResource(R.raw.buildings);
+					context.getResources().openRawResource(BUILDINGS_RAW_RESOURCE);
 
 			JsonReader reader = null;
 			try {
