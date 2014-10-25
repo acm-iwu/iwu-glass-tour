@@ -60,7 +60,7 @@ public class TourService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		
-		Buildings buildings = Buildings.getBuildings();
+		Buildings buildings = Buildings.getBuildings(getApplicationContext());
 		LocationManager locationManager =
 				(LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		SensorManager sensorManager =

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
@@ -74,6 +75,8 @@ public class BuildingsTest extends AndroidTestCase {
 			.build();
 	private static final List<Building> BUILDINGS = Arrays.asList(BUILDING_1, BUILDING_2);
 	
+	private Context context;
+	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -82,7 +85,7 @@ public class BuildingsTest extends AndroidTestCase {
 	}
 	
 	public void testGetBuildings() {
-		List<Building> buildings = Buildings.getBuildings().getAll();
+		List<Building> buildings = Buildings.getBuildings(context).getAll();
 		
 		assertEquals(BUILDINGS.size(), buildings.size());
 		
@@ -152,7 +155,7 @@ public class BuildingsTest extends AndroidTestCase {
 			}
 		};
 		
-		MockContext mockContext = new MockContext() {
+		context = new MockContext() {
 			@Override
 			public Resources getResources() {
 				return mockResources;
@@ -164,7 +167,7 @@ public class BuildingsTest extends AndroidTestCase {
 			}
 		};
 		
-		setContext(mockContext);
+		setContext(context);
 	}
 	
 	/**
