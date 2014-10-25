@@ -1,0 +1,60 @@
+[
+	{
+		"firstName": "Alan",
+		"lastName": "Russian",
+		"contributions": "Project assembly and coordination.",
+		"photo": {
+			"drawableName": "credit_arussian"
+		}
+	},
+	{
+		"firstName": "Jeremy",
+		"lastName": "Albert",
+		"contributions": "Detailed building information view."
+	},
+	{
+		"firstName": "Linh",
+		"lastName": "Nguyen",
+		"contributions": "Reading of building information."
+	},
+	{
+		"firstName": "Annmarie",
+		"lastName": "Gast",
+		"contributions": "Retrieval of building location information."
+	},
+	{
+		"firstName": "Minh",
+		"lastName": "Nguyen",
+		"contributions": "Inside building view."
+	},
+	{
+		"firstName": "Haocheng",
+		"lastName": "Zan",
+		"contributions": "Persistence of building information."
+	},
+	{
+		"firstName": "Chenxi",
+		"lastName": "Huang",
+		"contributions": "Persistence of building information."
+	},
+	{
+		"firstName": "Nathaniel",
+		"lastName": "Schmeling",
+		"contributions": "Outside building view"
+	},
+	{
+		"firstName": "LinhChi",
+		"lastName": "Bui",
+		"contributions": "Photography."
+	},
+	{
+		"firstName": "Cindy",
+		"lastName": "Basilio",
+		"contributions": "Photography."
+	},
+	{
+		"firstName": "Shaun",
+		"lastName": "Schaefers",
+		"contributions": "Project idea."
+	}
+]
