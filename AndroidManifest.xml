@@ -29,6 +29,8 @@
 
         <activity android:name="org.iwuacm.iwuglasstour.InfoActivity" />
 
+        <activity android:name="org.iwuacm.iwuglasstour.CreditsActivity" />
+
         <service
             android:name="org.iwuacm.iwuglasstour.TourService"
             android:label="@string/app_name"
