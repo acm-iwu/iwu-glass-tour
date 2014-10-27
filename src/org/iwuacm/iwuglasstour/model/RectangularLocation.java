@@ -21,14 +21,14 @@ public class RectangularLocation implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static final Comparator<Location> COMPARE_BY_LATITUDE_THEN_LONGITUDE =
+	private static final Comparator<Location> COMPARE_BY_LONGITUDE_THEN_LATITUDE =
 			new Comparator<Location>() {
 				@Override
 				public int compare(Location lhs, Location rhs) {
-					int compareValue = Double.compare(lhs.getLatitude(), rhs.getLatitude());
+					int compareValue = Double.compare(lhs.getLongitude(), rhs.getLongitude());
 					
 					if (compareValue == 0.0) {
-						return Double.compare(lhs.getLongitude(), rhs.getLongitude());
+						return Double.compare(lhs.getLatitude(), rhs.getLatitude());
 					}
 					
 					return compareValue;
@@ -46,7 +46,7 @@ public class RectangularLocation implements Serializable {
 	 */
 	public RectangularLocation(Location a, Location b, Location c, Location d) {
 		List<Location> sortedLocations = new ArrayList<Location>(Arrays.asList(a, b, c, d));
-		Collections.sort(sortedLocations, COMPARE_BY_LATITUDE_THEN_LONGITUDE);
+		Collections.sort(sortedLocations, COMPARE_BY_LONGITUDE_THEN_LATITUDE);
 		
 		this.southWest = sortedLocations.get(0);
 		this.northWest = sortedLocations.get(1);
@@ -110,12 +110,12 @@ public class RectangularLocation implements Serializable {
 		Double longitude = null;
 		
 		if (MathUtils.isNumberWithin(
-				location.getLatitude(), northWest.getLatitude(), northEast.getLatitude())) {
+				location.getLatitude(), northEast.getLatitude(), southEast.getLatitude())) {
 			latitude = location.getLatitude();
 		}
 		
 		if (MathUtils.isNumberWithin(
-				location.getLongitude(), northEast.getLongitude(), southEast.getLongitude())) {
+				location.getLongitude(), northWest.getLongitude(), northEast.getLongitude())) {
 			longitude = location.getLongitude();
 		}
 		
@@ -152,9 +152,9 @@ public class RectangularLocation implements Serializable {
 	 * Returns whether {@code location} is within this {@link RectangularLocation}.
 	 */
 	public boolean isLocationContained(Location location) {
-		return (location.getLatitude() >= northWest.getLatitude())
+		return (location.getLatitude() >= southEast.getLatitude())
 				&& (location.getLatitude() <= northEast.getLatitude())
-				&& (location.getLongitude() >= southEast.getLongitude())
+				&& (location.getLongitude() >= northWest.getLongitude())
 				&& (location.getLongitude() <= northEast.getLongitude());
 	}
 	

@@ -8,10 +8,10 @@ import junit.framework.TestCase;
 public class RectangularLocationTest extends TestCase {
 	
 	private static final double DOUBLE_TOLERANCE = 0.0001;
-	private static final Location NORTH_WEST = new Location(-20.0, 30.0);
+	private static final Location NORTH_WEST = new Location(20.0, -30.0);
 	private static final Location NORTH_EAST = new Location(20.0, 30.0);
 	private static final Location SOUTH_WEST = new Location(-20.0, -30.0);
-	private static final Location SOUTH_EAST = new Location(20.0, -30.0);
+	private static final Location SOUTH_EAST = new Location(-20.0, 30.0);
 	
 	private RectangularLocation location;
 	
@@ -71,7 +71,7 @@ public class RectangularLocationTest extends TestCase {
 	 * Tests case where the north west corner is expected.
 	 */
 	public void testGetClosestPointWithin_locationNorthWest() {
-		verifyClosestPoint(NORTH_WEST, new Location(-21.0, 31.0));
+		verifyClosestPoint(NORTH_WEST, new Location(21.0, -31.0));
 	}
 
 	/**
@@ -92,21 +92,21 @@ public class RectangularLocationTest extends TestCase {
 	 * Tests case where the south east corner is expected.
 	 */
 	public void testGetClosestPointWithin_locationSouthEast() {
-		verifyClosestPoint(SOUTH_EAST, new Location(21.0, -31.0));
+		verifyClosestPoint(SOUTH_EAST, new Location(-21.0, 31.0));
 	}
 	
 	/**
 	 * Tests case where a point along the southern perimeter is expected.
 	 */
 	public void testGetClosestPointWithin_locationSouthernPerimeter() {
-		verifyClosestPoint(new Location(1.0, -30.0), new Location(1.0, -31.0));
+		verifyClosestPoint(new Location(-20.0, 1.0), new Location(-21.0, 1.0));
 	}
 	
 	/**
 	 * Tests case where a point along the eastern perimeter is expected.
 	 */
 	public void testGetClosestPointWithin_locationEasternPerimeter() {
-		verifyClosestPoint(new Location(20.0, 2.0), new Location(21.0, 2.0));
+		verifyClosestPoint(new Location(2.0, 30.0), new Location(2.0, 31.0));
 	}
 	
 	/**
