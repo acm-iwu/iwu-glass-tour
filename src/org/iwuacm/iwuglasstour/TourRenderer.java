@@ -34,26 +34,29 @@ public class TourRenderer implements DirectRenderingCallback {
 						Building front,
 						Building right) {
 					
-					// TODO: Implement.
+					outsideView.setNearbyBuildings(left, front, right);
 				}
 				
 				@Override
 				public void onExitBuilding() {
 					isInside = false;
 
-					// TODO: Implement.
+					outsideView.setNearbyBuildings(
+							buildingLocationManager.getLeftBuilding(),
+							buildingLocationManager.getFrontBuilding(),
+							buildingLocationManager.getRightBuilding());
 				}
 				
 				@Override
 				public void onEnterBuilding(Building building) {
 					isInside = true;
 					
-					// TODO: Implement.
+					insideView.setBuilding(building);
 				}
 
 				@Override
 				public void onCompassInterference(boolean hasInterference) {
-					// TODO: Implement.
+					outsideView.setHasCompassInterference(hasInterference);
 				}
 			};
 	

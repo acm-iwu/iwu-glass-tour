@@ -4,6 +4,7 @@ import org.iwuacm.iwuglasstour.R;
 import org.iwuacm.iwuglasstour.model.Building;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -37,10 +38,17 @@ public class OutsideView extends RelativeLayout {
         this.outsideRight = (TextView) findViewById(R.id.outside_right);
     }
     
-    public void setNearbyBuildings(Building left, Building front, Building right) {
-    	outsideFront.setText(front.getName());
-    	outsideLeft.setText(left.getShortName());
-    	outsideRight.setText(right.getShortName());
+    /**
+     * Updates the nearby buildings. Handles the case where the buildings are not present.
+     */
+    public void setNearbyBuildings(
+    		@Nullable Building left,
+    		@Nullable Building front,
+    		@Nullable Building right) {
+
+    	outsideFront.setText((front == null) ? "" : front.getName());
+    	outsideLeft.setText((left == null) ? "" : left.getShortName());
+    	outsideRight.setText((right == null) ? "" : right.getShortName());
 
     	if (listener != null) {
     		listener.onChange();
