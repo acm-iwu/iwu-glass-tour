@@ -42,14 +42,11 @@ public class TourRenderer implements DirectRenderingCallback {
 					isInside = false;
 
 					// TODO: Implement.
-
-					outsideView.startRendering();
 				}
 				
 				@Override
 				public void onEnterBuilding(Building building) {
 					isInside = true;
-					outsideView.stopRendering();
 					
 					// TODO: Implement.
 				}
@@ -142,13 +139,10 @@ public class TourRenderer implements DirectRenderingCallback {
 						buildingLocationManager.getLeftBuilding(),
 						buildingLocationManager.getFrontBuilding(),
 						buildingLocationManager.getRightBuilding());
-				outsideView.startRendering();
 			}
 		} else {
 			buildingLocationManager.stopTracking();
 			buildingLocationManager.removeListener(buildingLocationListener);
-
-			outsideView.stopRendering();
 		}
 	}
 	

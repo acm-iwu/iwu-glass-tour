@@ -10,8 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Draws a viewfinder with an overlay of buildings in front and to the sides. Displays when the user
- * is outside of a building.
+ * Draws buildings in front and to the sides. Displays when the user is outside of a building.
  */
 public class OutsideView extends RelativeLayout {
 
@@ -38,22 +37,11 @@ public class OutsideView extends RelativeLayout {
         this.outsideRight = (TextView) findViewById(R.id.outside_right);
     }
     
-    /**
-     * Starts rendering the view, updating it regularly.
-     */
-    // TODO: Implement.
-    public void startRendering() {}
-    
-    /**
-     * Stops rendering the view. Stops any regularly scheduled rendering.
-     */
-    // TODO: Implement.
-    public void stopRendering() {}
-    
     public void setNearbyBuildings(Building left, Building front, Building right) {
     	outsideFront.setText(front.getName());
     	outsideLeft.setText(left.getShortName());
     	outsideRight.setText(right.getShortName());
+
     	if (listener != null) {
     		listener.onChange();
     	}
