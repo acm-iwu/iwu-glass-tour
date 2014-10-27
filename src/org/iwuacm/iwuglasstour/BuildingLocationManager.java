@@ -180,7 +180,7 @@ public class BuildingLocationManager {
 		for (Building building : buildingsSortedByDistance) {
 			// Find out which side (within, right, or left) of the cone of visual attention that
 			// the building is within.
-			Location closestPoint = building.getLocation().getClosestPointWithin(location);
+			Location closestPoint = building.getLocation().findClosestPointWithin(location);
 			float bearing = MathUtils.getBearing(
 					location.getLatitude(),
 					location.getLongitude(),
@@ -228,8 +228,8 @@ public class BuildingLocationManager {
 		return new Comparator<Building>() {
 			@Override
 			public int compare(Building lhs, Building rhs) {
-				Location left = lhs.getLocation().getClosestPointWithin(location);
-				Location right = rhs.getLocation().getClosestPointWithin(location);
+				Location left = lhs.getLocation().findClosestPointWithin(location);
+				Location right = rhs.getLocation().findClosestPointWithin(location);
 
 				return Double.compare(
 						MathUtils.getDistance(

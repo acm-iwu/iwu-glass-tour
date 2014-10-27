@@ -3,6 +3,8 @@ package org.iwuacm.iwuglasstour.model;
 import java.util.Arrays;
 import java.util.List;
 
+import org.iwuacm.iwuglasstour.util.MathUtils;
+
 import junit.framework.TestCase;
 
 public class RectangularLocationTest extends TestCase {
@@ -70,54 +72,103 @@ public class RectangularLocationTest extends TestCase {
 	/**
 	 * Tests case where the north west corner is expected.
 	 */
-	public void testGetClosestPointWithin_locationNorthWest() {
+	public void testFindClosestPointWithin_locationNorthWest() {
 		verifyClosestPoint(NORTH_WEST, new Location(21.0, -31.0));
 	}
 
 	/**
 	 * Tests case where the north east corner is expected.
 	 */
-	public void testGetClosestPointWithin_locationNorthEast() {
+	public void testFindClosestPointWithin_locationNorthEast() {
 		verifyClosestPoint(NORTH_EAST, new Location(21.0, 31.0));
 	}
 
 	/**
 	 * Tests case where the south west corner is expected.
 	 */
-	public void testGetClosestPointWithin_locationSouthWest() {
+	public void testFindClosestPointWithin_locationSouthWest() {
 		verifyClosestPoint(SOUTH_WEST, new Location(-21.0, -31.0));
 	}
 	
 	/**
 	 * Tests case where the south east corner is expected.
 	 */
-	public void testGetClosestPointWithin_locationSouthEast() {
+	public void testFindClosestPointWithin_locationSouthEast() {
 		verifyClosestPoint(SOUTH_EAST, new Location(-21.0, 31.0));
 	}
 	
 	/**
 	 * Tests case where a point along the southern perimeter is expected.
 	 */
-	public void testGetClosestPointWithin_locationSouthernPerimeter() {
+	public void testFindClosestPointWithin_locationSouthernPerimeter() {
 		verifyClosestPoint(new Location(-20.0, 1.0), new Location(-21.0, 1.0));
 	}
 	
 	/**
 	 * Tests case where a point along the eastern perimeter is expected.
 	 */
-	public void testGetClosestPointWithin_locationEasternPerimeter() {
+	public void testFindClosestPointWithin_locationEasternPerimeter() {
 		verifyClosestPoint(new Location(2.0, 30.0), new Location(2.0, 31.0));
 	}
 	
 	/**
 	 * Tests case where a point inside is expected.
 	 */
-	public void testGetClosestPointWithin_locationWithin() {
+	public void testFindClosestPointWithin_locationWithin() {
 		final Location locationWithin = new Location(1.0, 2.0);
 
 		verifyClosestPoint(locationWithin, locationWithin);
 	}
 	
+	public void testComputeHeadingOffset_locatedSouth_facingNorth() {
+		final Location withLocation = new Location(-21.0, 0.0);
+		final double withHeading = 0.0;
+		final double expectedOffset = 0.0;
+
+		verifyHeadingOffset(expectedOffset, withLocation, withHeading);
+	}
+	
+	public void testComputeHeadingOffset_locatedWest_facingEast() {
+		final Location withLocation = new Location(0.0, -31.0);
+		final double withHeading = 90.0;
+		final double expectedOffset = 0.0;
+
+		verifyHeadingOffset(expectedOffset, withLocation, withHeading);
+	}
+	
+	public void testComputeHeadingOffset_locatedNorth_facingSouth() {
+		final Location withLocation = new Location(21.0, 0.0);
+		final double withHeading = 180.0;
+		final double expectedOffset = 0.0;
+
+		verifyHeadingOffset(expectedOffset, withLocation, withHeading);
+	}
+	
+	public void testComputeHeadingOffset_locatedEast_facingWest() {
+		final Location withLocation = new Location(0.0, 31.0);
+		final double withHeading = 270.0;
+		final double expectedOffset = 0.0;
+
+		verifyHeadingOffset(expectedOffset, withLocation, withHeading);
+	}
+	
+	/**
+	 * Tests the heading offset when facing north, east of the north-east corner. At first, this may
+	 * appear to be zero, but because of the non-planar nature of how latitudes and longitudes work
+	 * (I think), this is actually the bearing from that location to the north-west corner.
+	 */
+	public void testComputeHeadingOffset_locatedEast_facingNorth() {
+		final Location withLocation = new Location(20.0, 31.0);
+		final double withHeading = 0.0;
+		final double expectedOffset = -360.0 + MathUtils.getBearing(
+				withLocation.getLatitude(),
+				withLocation.getLongitude(),
+				NORTH_WEST.getLatitude(),
+				NORTH_WEST.getLongitude());
+
+		verifyHeadingOffset(expectedOffset, withLocation, withHeading);
+	}
+
 	public void testIsLocationContained_notContained() {
 		final List<Location> locations = Arrays.asList(
 				new Location(-21.0, 1.0),
@@ -145,9 +196,15 @@ public class RectangularLocationTest extends TestCase {
 	}
 	
 	private void verifyClosestPoint(Location expected, Location otherLocation) {
-		Location closestPoint = location.getClosestPointWithin(otherLocation);
+		Location closestPoint = location.findClosestPointWithin(otherLocation);
 		
 		assertEquals(expected.getLatitude(), closestPoint.getLatitude(), DOUBLE_TOLERANCE);
 		assertEquals(expected.getLongitude(), closestPoint.getLongitude(), DOUBLE_TOLERANCE);
+	}
+	
+	private void verifyHeadingOffset(double expected, Location otherLocation, double heading) {
+		double headingOffset = location.computeHeadingOffset(otherLocation, heading);
+		
+		assertEquals(expected, headingOffset, DOUBLE_TOLERANCE);
 	}
 }

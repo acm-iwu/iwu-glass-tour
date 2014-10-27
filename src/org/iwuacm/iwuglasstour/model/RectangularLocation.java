@@ -105,7 +105,7 @@ public class RectangularLocation implements Serializable {
 	 * to the {@code location} or by returning {@code location} if {@code location} is within the
 	 * building.
 	 */
-	public Location getClosestPointWithin(Location location) {
+	public Location findClosestPointWithin(Location location) {
 		Double latitude = null;
 		Double longitude = null;
 		
@@ -146,6 +146,47 @@ public class RectangularLocation implements Serializable {
 		}
 
 		return new Location(latitudeThere, longitudeThere);
+	}
+	
+	/**
+	 * Computes the minimal relative bearing of this rectangle from a point and heading. Bearing is
+	 * guaranteed to be within: -180 <= bearing <= 180.
+	 */
+	public double computeHeadingOffset(Location location, double heading) {
+		List<Location> coordinates = Arrays.asList(northWest, northEast, southWest, southEast);
+		
+		Double maxHeadingOffset = null;
+		Double minHeadingOffset = null;
+		for (Location corner : coordinates) {
+			double bearing = MathUtils.getBearing(
+					location.getLatitude(),
+					location.getLongitude(),
+					corner.getLatitude(),
+					corner.getLongitude());
+			double headingOffset = bearing - heading;
+			
+			if (headingOffset > 180.0) {
+				headingOffset = -360.0 + headingOffset;
+			}
+			
+			if ((maxHeadingOffset == null) || (headingOffset > maxHeadingOffset)) {
+				maxHeadingOffset = headingOffset;
+			}
+			
+			if ((minHeadingOffset == null) || (headingOffset < minHeadingOffset)) {
+				minHeadingOffset = headingOffset;
+			}
+		}
+		
+		// Handle case where the rectangle is directly within the rectangle.
+		if ((maxHeadingOffset >= 0.0) && (minHeadingOffset <= 0.0)) {
+			return 0.0;
+		}
+		
+		// Want to return smallest absolute bearing.
+		return Math.abs(minHeadingOffset) <= Math.abs(maxHeadingOffset)
+				? minHeadingOffset
+				: maxHeadingOffset;
 	}
 	
 	/**
