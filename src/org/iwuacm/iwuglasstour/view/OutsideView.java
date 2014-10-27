@@ -57,6 +57,9 @@ public class OutsideView extends RelativeLayout {
     
     // TODO: Implement.
     public void setHasCompassInterference(boolean hasInterference) {}
+
+    // TODO: Implement.
+	public void setHasLocation(boolean hasLocation) {}
     
     public void setListener(ViewChangeListener listener) {
     	this.listener = listener;

@@ -50,6 +50,11 @@ public class TourService extends Service {
 				public void onCompassInterference(boolean hasInterference) {
 					// Do not care here.
 				}
+				
+				@Override
+				public void onHasLocationChange(boolean hasLocation) {
+					// Do not care here.
+				}
 			};
 	
 	private BuildingLocationManager buildingLocationManager;

@@ -58,6 +58,10 @@ public class TourRenderer implements DirectRenderingCallback {
 				public void onCompassInterference(boolean hasInterference) {
 					outsideView.setHasCompassInterference(hasInterference);
 				}
+				
+				public void onHasLocationChange(boolean hasLocation) {
+					outsideView.setHasLocation(hasLocation);
+				}
 			};
 	
 	private boolean renderingPaused;
@@ -143,6 +147,9 @@ public class TourRenderer implements DirectRenderingCallback {
 						buildingLocationManager.getFrontBuilding(),
 						buildingLocationManager.getRightBuilding());
 			}
+			
+			outsideView.setHasCompassInterference(buildingLocationManager.hasCompassInterference());
+			outsideView.setHasLocation(buildingLocationManager.hasLocation());
 		} else {
 			buildingLocationManager.stopTracking();
 			buildingLocationManager.removeListener(buildingLocationListener);

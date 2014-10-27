@@ -43,6 +43,13 @@ public class BuildingLocationManager {
 		 * @param hasInterference indicates whether there is interference now
 		 */
 		void onCompassInterference(boolean hasInterference);
+		
+		/**
+		 * Called when the state of having the user's location has changed.
+		 * 
+		 * @param hasLocation indicates whether the location is present
+		 */
+		void onHasLocationChange(boolean hasLocation);
 	}
 	
 	/**
@@ -73,7 +80,7 @@ public class BuildingLocationManager {
 
 					if (hasInterference != hasInterferenceNow) {
 						hasInterference = hasInterferenceNow;
-						notifyCompassInterference(hasInterference);
+						notifyHasCompassInterference(hasInterference);
 					}
 				}
 			};
@@ -83,6 +90,7 @@ public class BuildingLocationManager {
 	private Building right;
 	private Building inside;
 	private boolean hasInterference;
+	private boolean hasLocation;
 	
 	public BuildingLocationManager(
 			Buildings buildings,
@@ -142,14 +150,31 @@ public class BuildingLocationManager {
 		return right;
 	}
 	
+	public boolean hasCompassInterference() {
+		return hasInterference;
+	}
+	
+	public boolean hasLocation() {
+		return hasLocation;
+	}
+	
 	/**
 	 * Calculates the buildings in front and to the sides or the building the user is within.
 	 */
 	private void updateLocationState() {
-		// May not have location right away.
-		// TODO: Notify of unavailable location?
+		// Cannot proceed without location.
 		if (!orientationManager.hasLocation()) {
+			if (hasLocation != false) {
+				hasLocation = false;
+				notifyHasLocation(false);
+			}
+
 			return;
+		}
+		
+		if (hasLocation != true) {
+			hasLocation = true;
+			notifyHasLocation(true);
 		}
 
 		float heading = orientationManager.getHeading();
@@ -282,9 +307,18 @@ public class BuildingLocationManager {
 	/**
 	 * Notifies the listeners of the beginning or end of compass interference.
 	 */
-	private void notifyCompassInterference(boolean hasInterference) {
+	private void notifyHasCompassInterference(boolean hasInterference) {
 		for (Listener listener : listeners) {
 			listener.onCompassInterference(hasInterference);
+		}
+	}
+	
+	/**
+	 * Notifies the listeners of the beginning or end of having the user's location.
+	 */
+	private void notifyHasLocation(boolean hasLocation) {
+		for (Listener listener : listeners) {
+			listener.onHasLocationChange(hasLocation);
 		}
 	}
 }
