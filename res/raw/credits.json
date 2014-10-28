@@ -10,22 +10,34 @@
 	{
 		"firstName": "Jeremy",
 		"lastName": "Albert",
-		"contributions": "Detailed building information view."
+		"contributions": "Detailed building information view.",
+		"photo": {
+			"drawableName": "credit_jalbert1"
+		}
 	},
 	{
 		"firstName": "Linh",
 		"lastName": "Nguyen",
-		"contributions": "Reading of building information."
+		"contributions": "Reading of building information.",
+		"photo": {
+			"drawableName": "credit_lnguyen"
+		}
 	},
 	{
 		"firstName": "Annmarie",
 		"lastName": "Gast",
-		"contributions": "Retrieval of building location information."
+		"contributions": "Retrieval of building location information.",
+		"photo": {
+			"drawableName": "credit_agast"
+		}
 	},
 	{
 		"firstName": "Minh",
 		"lastName": "Nguyen",
-		"contributions": "Inside building view."
+		"contributions": "Inside building view.",
+		"photo": {
+			"drawableName": "credit_mnguyen3"
+		}
 	},
 	{
 		"firstName": "Haocheng",
@@ -55,6 +67,9 @@
 	{
 		"firstName": "Shaun",
 		"lastName": "Schaefers",
-		"contributions": "Project idea."
+		"contributions": "Project idea.",
+		"photo": {
+			"drawableName": "credit_sschaef1"
+		}
 	}
 ]
