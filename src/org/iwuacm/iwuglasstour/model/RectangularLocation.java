@@ -12,6 +12,9 @@ import java.util.Set;
 
 import org.iwuacm.iwuglasstour.util.MathUtils;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Ordering;
+
 /**
  * Defines the location of a place as a rectangle with four {@link Location}s as the corners. The
  * edges must be parallel to the horizontal and vertical axes, so there can only be two distinct
@@ -34,6 +37,12 @@ public class RectangularLocation implements Serializable {
 					return compareValue;
 				}
 			};
+			
+	private static final Ordering<Double> ORDER_BY_ABSOULTE_VALUE = new Ordering<Double>() {
+		@Override
+		public int compare(Double lhs, Double rhs) {
+			return Double.compare(Math.abs(lhs), Math.abs(rhs));
+		}};
 	
 	private final Location northWest;
 	private final Location northEast;
@@ -153,10 +162,9 @@ public class RectangularLocation implements Serializable {
 	 * guaranteed to be within: -180 <= bearing <= 180.
 	 */
 	public double computeHeadingOffset(Location location, double heading) {
-		List<Location> coordinates = Arrays.asList(northWest, northEast, southWest, southEast);
+		List<Location> coordinates = ImmutableList.of(northWest, northEast, southWest, southEast);
 		
-		Double maxHeadingOffset = null;
-		Double minHeadingOffset = null;
+		ImmutableList.Builder<Double> headingOffsetsBuilder = ImmutableList.builder();
 		for (Location corner : coordinates) {
 			double bearing = MathUtils.getBearing(
 					location.getLatitude(),
@@ -167,26 +175,27 @@ public class RectangularLocation implements Serializable {
 			
 			if (headingOffset > 180.0) {
 				headingOffset = -360.0 + headingOffset;
+			} else if (headingOffset < -180.0) {
+				headingOffset = 360.0 + headingOffset;
 			}
 			
-			if ((maxHeadingOffset == null) || (headingOffset > maxHeadingOffset)) {
-				maxHeadingOffset = headingOffset;
-			}
-			
-			if ((minHeadingOffset == null) || (headingOffset < minHeadingOffset)) {
-				minHeadingOffset = headingOffset;
-			}
+			headingOffsetsBuilder.add(headingOffset);
 		}
 		
+		ImmutableList<Double> headingOffsets = headingOffsetsBuilder.build();
+		
 		// Handle case where the rectangle is directly within the rectangle.
-		if ((maxHeadingOffset >= 0.0) && (minHeadingOffset <= 0.0)) {
+		double maxHeadingOffset = Collections.max(headingOffsets);
+		double minHeadingOffset = Collections.min(headingOffsets);
+		if ((maxHeadingOffset >= 0.0) && (minHeadingOffset <= 0.0)
+				&& (maxHeadingOffset - minHeadingOffset <= 180.0)) {
 			return 0.0;
 		}
 		
-		// Want to return smallest absolute bearing.
-		return Math.abs(minHeadingOffset) <= Math.abs(maxHeadingOffset)
-				? minHeadingOffset
-				: maxHeadingOffset;
+		// Order by smallest to greatest absolute value followed by largest to smallest actual
+		// value, so that right is preferred over left if they have the same absolute value.
+		Ordering<Double> ordering = ORDER_BY_ABSOULTE_VALUE.compound(Ordering.natural().reverse());
+		return Collections.min(headingOffsets, ordering);
 	}
 	
 	/**
