@@ -42,5 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/outside_front"
         android:layout_toRightOf="@id/center_shim" />	
+        
+    <TextView
+        android:id="@+id/outside_status"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
     
 </RelativeLayout>

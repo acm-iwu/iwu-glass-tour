@@ -4,4 +4,10 @@
     <string name="app_name">IWU Glass Tour</string>
     <string name="tour_show">Tour Illinois Wesleyan</string>
 
+    <!-- Tip message warning there is too much compass interference. [CHAR LIMIT=45] -->
+    <string name="magnetic_interference">Glass is detecting too much interference</string>
+
+    <!-- Tip message warning the location can not be found. [CHAR LIMIT=45] -->
+    <string name="location_unavailable">Glass is unable to detect your location</string>
+
 </resources>

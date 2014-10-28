@@ -15,11 +15,19 @@ import android.widget.TextView;
  */
 public class OutsideView extends RelativeLayout {
 
-	private final TextView outsideFront;
-	private final TextView outsideLeft;
-	private final TextView outsideRight;
+	private final TextView frontTextView;
+	private final TextView leftTextView;
+	private final TextView rightTextView;
+	private final TextView statusTextView;
 	
 	private ViewChangeListener listener;
+	private boolean hasCompassInterference;
+	private boolean hasLocation;
+	
+	/**
+	 * The resource ID of the currently displayed status string.
+	 */
+	private Integer statusString;
 
     public OutsideView(Context context) {
         this(context, null, 0);
@@ -33,9 +41,14 @@ public class OutsideView extends RelativeLayout {
         super(context, attrs, defStyle);
         LayoutInflater.from(context).inflate(R.layout.outside, this);
         
-        this.outsideFront = (TextView) findViewById(R.id.outside_front);
-        this.outsideLeft = (TextView) findViewById(R.id.outside_left);
-        this.outsideRight = (TextView) findViewById(R.id.outside_right);
+        this.frontTextView = (TextView) findViewById(R.id.outside_front);
+        this.leftTextView = (TextView) findViewById(R.id.outside_left);
+        this.rightTextView = (TextView) findViewById(R.id.outside_right);
+        this.statusTextView = (TextView) findViewById(R.id.outside_status);
+        
+        hasCompassInterference = false;
+        hasLocation = true;
+        statusString = null;
     }
     
     /**
@@ -46,22 +59,66 @@ public class OutsideView extends RelativeLayout {
     		@Nullable Building front,
     		@Nullable Building right) {
 
-    	outsideFront.setText((front == null) ? "" : front.getName());
-    	outsideLeft.setText((left == null) ? "" : left.getShortName());
-    	outsideRight.setText((right == null) ? "" : right.getShortName());
+    	frontTextView.setText((front == null) ? "" : front.getName());
+    	leftTextView.setText((left == null) ? "" : left.getShortName());
+    	rightTextView.setText((right == null) ? "" : right.getShortName());
 
-    	if (listener != null) {
-    		listener.onChange();
-    	}
+    	notifyChange();
     }
     
-    // TODO: Implement.
-    public void setHasCompassInterference(boolean hasInterference) {}
+    public void setHasCompassInterference(boolean hasCompassInterference) {
+    	if (hasCompassInterference == this.hasCompassInterference) {
+    		return;
+    	}
+    	
+    	this.hasCompassInterference = hasCompassInterference;
+    	
+    	updateStatusMessage();
+    }
 
-    // TODO: Implement.
-	public void setHasLocation(boolean hasLocation) {}
+	public void setHasLocation(boolean hasLocation) {
+		if (hasLocation == this.hasLocation) {
+			return;
+		}
+		
+		this.hasLocation = hasLocation;
+		
+		updateStatusMessage();
+	}
     
     public void setListener(ViewChangeListener listener) {
     	this.listener = listener;
+    }
+    
+    /**
+     * If no location is present, it displays the location message, otherwise it displays the
+     * compass interference message if there is compass interference.
+     */
+    private void updateStatusMessage() {
+    	Integer newStatusString = null;
+
+    	if (!hasLocation) {
+    		newStatusString = R.string.location_unavailable;
+    	} else if (hasCompassInterference) {
+    		newStatusString = R.string.magnetic_interference;
+    	}
+    	
+    	if (newStatusString != statusString) {
+    		statusString = newStatusString;
+    		
+    		if (newStatusString == null) {
+    			statusTextView.setText("");
+    		} else {
+    			statusTextView.setText(newStatusString);
+    		}
+    		
+    		notifyChange();
+    	}
+    }
+    
+    private void notifyChange() {
+    	if (listener != null) {
+    		listener.onChange();
+    	}
     }
 }
