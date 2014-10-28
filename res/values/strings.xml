@@ -9,5 +9,8 @@
 
     <!-- Tip message warning the location can not be found. [CHAR LIMIT=45] -->
     <string name="location_unavailable">Glass is unable to detect your location</string>
+    
+    <string name="miles_unit">mi</string>
+    <string name="feet_unit">ft</string>
 
 </resources>

@@ -29,6 +29,9 @@ public class MathUtils {
     /** The Earth's radius, in kilometers. */
     private static final double EARTH_RADIUS_KM = 6371.0;
 
+	private static final double MILES_IN_KILOMETER = 0.621371;
+	private static final double FEET_IN_MILE = 5280;
+
     /**
      * Calculates {@code a mod b} in a way that respects negative values (for example,
      * {@code mod(-1, 5) == 4}, rather than {@code -1}).
@@ -136,5 +139,19 @@ public class MathUtils {
     	return new org.iwuacm.iwuglasstour.model.Location(
     			androidLocation.getLatitude(),
     			androidLocation.getLongitude());
+    }
+    
+    /**
+     * Converts a distance in kilometers to miles.
+     */
+    public static double convertKilometersToMiles(double kilometers) {
+    	return MILES_IN_KILOMETER * kilometers;
+    }
+    
+    /**
+     * Converts a distance in miles to feet.
+     */
+    public static double convertMilesToFeet(double miles) {
+    	return FEET_IN_MILE * miles;
     }
 }
