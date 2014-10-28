@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 import org.iwuacm.iwuglasstour.view.InsideView;
 import org.iwuacm.iwuglasstour.view.OutsideView;
 import org.iwuacm.iwuglasstour.view.ViewChangeListener;
@@ -30,9 +31,9 @@ public class TourRenderer implements DirectRenderingCallback {
 			new BuildingLocationManager.Listener() {
 				@Override
 				public void onNearbyBuildingsChange(
-						Building left,
-						Building front,
-						Building right) {
+						BuildingWithLocation left,
+						BuildingWithLocation front,
+						BuildingWithLocation right) {
 					
 					outsideView.setNearbyBuildings(left, front, right);
 				}

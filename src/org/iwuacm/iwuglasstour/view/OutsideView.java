@@ -1,7 +1,7 @@
 package org.iwuacm.iwuglasstour.view;
 
 import org.iwuacm.iwuglasstour.R;
-import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -55,13 +55,13 @@ public class OutsideView extends RelativeLayout {
      * Updates the nearby buildings. Handles the case where the buildings are not present.
      */
     public void setNearbyBuildings(
-    		@Nullable Building left,
-    		@Nullable Building front,
-    		@Nullable Building right) {
+    		@Nullable BuildingWithLocation left,
+    		@Nullable BuildingWithLocation front,
+    		@Nullable BuildingWithLocation right) {
 
-    	frontTextView.setText((front == null) ? "" : front.getName());
-    	leftTextView.setText((left == null) ? "" : left.getShortName());
-    	rightTextView.setText((right == null) ? "" : right.getShortName());
+    	frontTextView.setText((front == null) ? "" : front.getBuilding().getName());
+    	leftTextView.setText((left == null) ? "" : left.getBuilding().getShortName());
+    	rightTextView.setText((right == null) ? "" : right.getBuilding().getShortName());
 
     	notifyChange();
     }

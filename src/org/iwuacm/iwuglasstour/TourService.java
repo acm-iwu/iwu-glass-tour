@@ -1,6 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 import org.iwuacm.iwuglasstour.model.Buildings;
 
 import com.google.android.glass.timeline.LiveCard;
@@ -25,18 +26,19 @@ public class TourService extends Service {
 			new BuildingLocationManager.Listener() {
 				@Override
 				public void onNearbyBuildingsChange(
-						Building left,
-						Building front,
-						Building right) {
+						BuildingWithLocation left,
+						BuildingWithLocation front,
+						BuildingWithLocation right) {
 					
 					if (!buildingLocationManager.isInsideBuilding()) {
-						setActiveBuilding(front);
+						setActiveBuilding(front == null ? null : front.getBuilding());
 					}
 				}
 				
 				@Override
 				public void onExitBuilding() {
-					setActiveBuilding(buildingLocationManager.getFrontBuilding());
+					BuildingWithLocation frontBuilding = buildingLocationManager.getFrontBuilding();
+					setActiveBuilding(frontBuilding == null ? null : frontBuilding.getBuilding());
 					setIsInside(false);
 				}
 				
@@ -93,11 +95,15 @@ public class TourService extends Service {
             menuIntent = new Intent(this, TourMenuActivity.class);
             menuIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-			setActiveBuilding(
-					buildingLocationManager.isInsideBuilding()
-						? buildingLocationManager.getBuildingInside()
-						: buildingLocationManager.getFrontBuilding(),
-					false);
+            Building activeBuilding;
+            if (buildingLocationManager.isInsideBuilding()) {
+            	activeBuilding = buildingLocationManager.getBuildingInside();
+            } else {
+            	BuildingWithLocation frontBuilding = buildingLocationManager.getFrontBuilding();
+            	activeBuilding = frontBuilding == null ? null : frontBuilding.getBuilding();
+            }
+
+			setActiveBuilding(activeBuilding, false);
 			setIsInside(buildingLocationManager.isInsideBuilding(), false);
             liveCard.setAction(updatePendingIntent());
 

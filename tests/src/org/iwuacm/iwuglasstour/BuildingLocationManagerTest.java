@@ -1,5 +1,7 @@
 package org.iwuacm.iwuglasstour;
 
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
@@ -8,6 +10,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 import org.iwuacm.iwuglasstour.model.Buildings;
 import org.iwuacm.iwuglasstour.model.RectangularLocation;
 import org.mockito.ArgumentCaptor;
@@ -242,9 +245,9 @@ public class BuildingLocationManagerTest extends AndroidTestCase {
 	}
 	
 	private void verifyUpdateLocationState(
-			Building expectedLeft,
-			Building expectedFront,
-			Building expectedRight,
+			Building expectedLeftBuilding,
+			Building expectedFrontBuilding,
+			Building expectedRightBuilding,
 			List<Building> buildingsInConeOfVisualAttention,
 			List<Building> buildingsOutsideConeOfVisualAttention) {
 		
@@ -253,7 +256,28 @@ public class BuildingLocationManagerTest extends AndroidTestCase {
 		createBuildingLocationManager();
 		orientationManagerListener.getValue().onLocationChanged(orientationManager);
 		
-		verify(listener).onNearbyBuildingsChange(expectedLeft, expectedFront, expectedRight);
+		BuildingWithLocation expectedLeft = expectedLeftBuilding == null
+				? null
+				: new BuildingWithLocation(
+						expectedLeftBuilding,
+						new org.iwuacm.iwuglasstour.model.Location(LATITUDE, LONGITUDE),
+						HEADING);
+		BuildingWithLocation expectedFront = expectedFrontBuilding == null
+				? null
+				: new BuildingWithLocation(
+						expectedFrontBuilding,
+						new org.iwuacm.iwuglasstour.model.Location(LATITUDE, LONGITUDE),
+						HEADING);
+		BuildingWithLocation expectedRight = expectedRightBuilding == null
+				? null
+				: new BuildingWithLocation(
+						expectedRightBuilding,
+						new org.iwuacm.iwuglasstour.model.Location(LATITUDE, LONGITUDE),
+						HEADING);
+		verify(listener).onNearbyBuildingsChange(
+				expectedLeft == null ? isNull(BuildingWithLocation.class) : eq(expectedLeft),
+				expectedFront == null ? isNull(BuildingWithLocation.class) : eq(expectedFront),
+				expectedRight == null ? isNull(BuildingWithLocation.class) : eq(expectedRight));
 	}
 	
 	/**

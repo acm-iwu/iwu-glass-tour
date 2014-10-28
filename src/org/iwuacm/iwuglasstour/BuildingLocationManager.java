@@ -4,12 +4,14 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.iwuacm.iwuglasstour.model.Building;
+import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 import org.iwuacm.iwuglasstour.model.Buildings;
 import org.iwuacm.iwuglasstour.model.Location;
 import org.iwuacm.iwuglasstour.model.RectangularLocation;
 import org.iwuacm.iwuglasstour.util.MathUtils;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -25,7 +27,10 @@ public class BuildingLocationManager {
 		/**
 		 * Called when the building in front or to the sides have changed.
 		 */
-		void onNearbyBuildingsChange(Building left, Building front, Building right);
+		void onNearbyBuildingsChange(
+				BuildingWithLocation left,
+				BuildingWithLocation front,
+				BuildingWithLocation right);
 		
 		/**
 		 * Called when the user enters a building.
@@ -86,9 +91,9 @@ public class BuildingLocationManager {
 				}
 			};
 			
-	private Building left;
-	private Building front;
-	private Building right;
+	private BuildingWithLocation left;
+	private BuildingWithLocation front;
+	private BuildingWithLocation right;
 	private Building inside;
 	private boolean hasInterference;
 	private boolean hasLocation;
@@ -138,15 +143,15 @@ public class BuildingLocationManager {
 		return inside;
 	}
 	
-	public Building getLeftBuilding() {
+	public BuildingWithLocation getLeftBuilding() {
 		return left;
 	}
 	
-	public Building getFrontBuilding() {
+	public BuildingWithLocation getFrontBuilding() {
 		return front;
 	}
 	
-	public Building getRightBuilding() {
+	public BuildingWithLocation getRightBuilding() {
 		return right;
 	}
 	
@@ -282,10 +287,19 @@ public class BuildingLocationManager {
 			}
 		}
 		
-		if ((newLeft != left) || (newFront != front) || (newRight != right)) {
-			left = newLeft;
-			front = newFront;
-			right = newRight;
+		BuildingWithLocation newLocatedLeft =
+				newLeft == null ? null : new BuildingWithLocation(newLeft, location, heading);
+		BuildingWithLocation newLocatedFront =
+				newFront == null ? null : new BuildingWithLocation(newFront, location, heading);
+		BuildingWithLocation newLocatedRight =
+				newRight == null ? null : new BuildingWithLocation(newRight, location, heading);
+		
+		if (!Objects.equal(newLocatedLeft, left)
+				|| !Objects.equal(newLocatedFront, front)
+				|| !Objects.equal(newLocatedRight, right)) {
+			left = newLocatedLeft;
+			front = newLocatedFront;
+			right = newLocatedRight;
 			
 			notifyNearbyBuildingsChange();
 		}
