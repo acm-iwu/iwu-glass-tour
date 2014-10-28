@@ -70,8 +70,9 @@ public class TourService extends Service {
 				(LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		SensorManager sensorManager =
 				(SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		buildingLocationManager =
-				new BuildingLocationManager(buildings, sensorManager, locationManager);
+		OrientationManager orientationManager =
+				new OrientationManager(sensorManager, locationManager);
+		buildingLocationManager = new BuildingLocationManager(buildings, orientationManager);
 	}
 
 	@Override

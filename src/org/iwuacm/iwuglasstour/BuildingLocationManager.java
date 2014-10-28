@@ -1,10 +1,6 @@
 package org.iwuacm.iwuglasstour;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.iwuacm.iwuglasstour.model.Building;
@@ -13,8 +9,12 @@ import org.iwuacm.iwuglasstour.model.Location;
 import org.iwuacm.iwuglasstour.model.RectangularLocation;
 import org.iwuacm.iwuglasstour.util.MathUtils;
 
-import android.hardware.SensorManager;
-import android.location.LocationManager;
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Ordering;
 
 /**
  * Keeps track of the user's location and provides access to nearby buildings.
@@ -56,11 +56,12 @@ public class BuildingLocationManager {
 	 * This is approximately the field of view of the human eye (in degrees), not including
 	 * peripheral vision, so it's the amount of stuff that we can focus on at a time.
 	 */
-	private static final float CONE_OF_VISUAL_ATTENTION = 55.0f;
+	@VisibleForTesting
+	static final float CONE_OF_VISUAL_ATTENTION = 55.0f;
 	
-	private final Buildings buildings;
 	private final OrientationManager orientationManager;
 	private final Set<Listener> listeners;
+	private final FluentIterable<Building> buildingsFluentIterable;
 	
 	private final OrientationManager.OnChangedListener orientationListener =
 			new OrientationManager.OnChangedListener() {
@@ -94,12 +95,11 @@ public class BuildingLocationManager {
 	
 	public BuildingLocationManager(
 			Buildings buildings,
-			SensorManager sensorManager,
-			LocationManager locationManager) {
+			OrientationManager orientationManager) {
 
-		this.buildings = buildings;
-		this.orientationManager = new OrientationManager(sensorManager, locationManager);
+		this.orientationManager = orientationManager;
 		this.listeners = new LinkedHashSet<Listener>();
+		this.buildingsFluentIterable = FluentIterable.from(buildings.getAll());
 	}
 	
 	public void addListener(Listener listener) {
@@ -177,65 +177,111 @@ public class BuildingLocationManager {
 			notifyHasLocation(true);
 		}
 
-		float heading = orientationManager.getHeading();
 		Location location =
 				MathUtils.androidLocationToModelLocation(orientationManager.getLocation());
-		
-		List<Building> buildingsSortedByDistance = new ArrayList<Building>(buildings.getAll());
-		if (buildingsSortedByDistance.isEmpty()) {
-			return;
-		}
-		Collections.sort(buildingsSortedByDistance, getComparatorByDistanceTo(location));
-		
-		// See if location is within first building.
-		Building closestBuilding = buildingsSortedByDistance.get(0);
-		if (closestBuilding.getLocation().isLocationContained(location)) {
-			if (inside != closestBuilding) {
-				inside = closestBuilding;
+
+		// Check if inside building.
+		Optional<Building> insideBuilding =
+				buildingsFluentIterable.firstMatch(makeIsInsidePredicate(location));
+		if (insideBuilding.isPresent()) {
+			if (inside != insideBuilding.get()) {
+				inside = insideBuilding.get();
 				notifyEnterBuilding();
 			}
 			
 			return;
 		}
 		
-		// Fill in each of these by finding the first building that matches.
+		if (inside != null) {
+			inside = null;
+			
+			notifyExitBuilding();
+		}
+		
+		// Retrieve nearby buildings.
+		float heading = orientationManager.getHeading();
+		
+		Ordering<Building> ordering = makeOrderingByAbsoluteHeadingOffset(location, heading)
+				.compound(makeOrderingByDistanceTo(location));
+		FluentIterable<Building> sortedBuildings =
+				FluentIterable.from(buildingsFluentIterable.toSortedList(ordering))
+						.filter(makeIsWithinHemispherePredicate(location, heading));
+		
 		Building newLeft = null;
 		Building newFront = null;
 		Building newRight = null;
-		for (Building building : buildingsSortedByDistance) {
-			// Find out which side (within, right, or left) of the cone of visual attention that
-			// the building is within.
-			Location closestPoint = building.getLocation().findClosestPointWithin(location);
-			float bearing = MathUtils.getBearing(
-					location.getLatitude(),
-					location.getLongitude(),
-					closestPoint.getLatitude(),
-					closestPoint.getLongitude());
-			
-			float headingOffset = bearing - heading;
-			if (Math.abs(headingOffset) < CONE_OF_VISUAL_ATTENTION / 2.0f) {
-				if (newFront == null) {
-					newFront = building;
-				}
-			} else if (headingOffset > 0.0f) {
-				if (newRight == null) {
-					newRight = building;
-				}
-			} else if (newLeft == null) {
-				newLeft = building;
-			}
 
-			if ((newLeft != null) && (newFront != null) && (newRight != null)) {
-				break;
+		Predicate<Building> isWithinConeOfVisualAttentionPredicate =
+				makeIsWithinConeOfVisualAttentionPredicate(location, heading);
+		FluentIterable<Building> buildingsInConeOfVisualAttention = sortedBuildings
+				.filter(isWithinConeOfVisualAttentionPredicate);
+		
+		if (buildingsInConeOfVisualAttention.isEmpty()) {
+			Optional<Building> optionalLeft = sortedBuildings.firstMatch(
+					makeIsToSideOfHeadingOffsetPredicate(false, 0.0, location, heading));
+			Optional<Building> optionalRight = sortedBuildings.firstMatch(
+					makeIsToSideOfHeadingOffsetPredicate(true, 0.0, location, heading));
+			
+			if (optionalLeft.isPresent()) {
+				newLeft = optionalLeft.get();
 			}
 			
+			if (optionalRight.isPresent()) {
+				newRight = optionalRight.get();
+			}
+		} else {
+			newFront = buildingsInConeOfVisualAttention.first().get();
+			double frontHeadingOffset =
+					newFront.getLocation().computeHeadingOffset(location, heading);
+			
+			// Sort remaining buildings by distance.
+			Ordering<Building> closestOrdering = makeOrderingByDistanceTo(location)
+					.compound(makeOrderingByAbsoluteHeadingOffset(location, frontHeadingOffset));
+			FluentIterable<Building> remaining = FluentIterable.from(
+					buildingsInConeOfVisualAttention.skip(1).toSortedList(closestOrdering));
+			
+			Optional<Building> optionalLeft = remaining.firstMatch(
+					makeIsToSideOfHeadingOffsetPredicate(
+							false,
+							frontHeadingOffset,
+							location,
+							heading));
+			Optional<Building> optionalRight = remaining.firstMatch(
+					makeIsToSideOfHeadingOffsetPredicate(
+							true,
+							frontHeadingOffset,
+							location,
+							heading));
+			
+			if (!optionalLeft.isPresent()) {
+				optionalLeft = sortedBuildings
+						.filter(Predicates.not(isWithinConeOfVisualAttentionPredicate))
+						.firstMatch(makeIsToSideOfHeadingOffsetPredicate(
+								false,
+								0.0,
+								location,
+								heading));
+			}
+			
+			if (!optionalRight.isPresent()) {
+				optionalRight = sortedBuildings
+						.filter(Predicates.not(isWithinConeOfVisualAttentionPredicate))
+						.firstMatch(makeIsToSideOfHeadingOffsetPredicate(
+								true,
+								0.0,
+								location,
+								heading));
+			}
+			
+			if (optionalLeft.isPresent()) {
+				newLeft = optionalLeft.get();
+			}
+			
+			if (optionalRight.isPresent()) {
+				newRight = optionalRight.get();
+			}
 		}
 		
-		if (inside != null) {
-			notifyExitBuilding();
-			inside = null;
-		}
-
 		if ((newLeft != left) || (newFront != front) || (newRight != right)) {
 			left = newLeft;
 			front = newFront;
@@ -243,32 +289,6 @@ public class BuildingLocationManager {
 			
 			notifyNearbyBuildingsChange();
 		}
-	}
-	
-	/**
-	 * Compares {@link Building}s by how far they are from {@code location} using
-	 * {@link RectangularLocation#getClosestPointWithin} to find optimal distances.
-	 */
-	private Comparator<Building> getComparatorByDistanceTo(final Location location) {
-		return new Comparator<Building>() {
-			@Override
-			public int compare(Building lhs, Building rhs) {
-				Location left = lhs.getLocation().findClosestPointWithin(location);
-				Location right = rhs.getLocation().findClosestPointWithin(location);
-
-				return Double.compare(
-						MathUtils.getDistance(
-								left.getLatitude(),
-								left.getLongitude(),
-								location.getLatitude(),
-								location.getLongitude()),
-						MathUtils.getDistance(
-								right.getLatitude(),
-								right.getLongitude(),
-								location.getLatitude(),
-								location.getLongitude()));
-			}
-		};
 	}
 	
 	/**
@@ -320,5 +340,122 @@ public class BuildingLocationManager {
 		for (Listener listener : listeners) {
 			listener.onHasLocationChange(hasLocation);
 		}
+	}
+	
+	/**
+	 * Makes a {@link Predicate} for whether a {@link Location} is inside a {@link Building}.
+	 */
+	private static Predicate<Building> makeIsInsidePredicate(final Location location) {
+		return new Predicate<Building>() {
+			@Override
+			public boolean apply(Building building) {
+				return building.getLocation().isLocationContained(location);
+			}
+		};
+	}
+	
+	/**
+	 * Makes a {@link Predicate} for whether a building is within one's cone of visual attention.
+	 */
+	private static Predicate<Building> makeIsWithinConeOfVisualAttentionPredicate(
+			final Location location,
+			final float heading) {
+		
+		return new Predicate<Building>() {
+			@Override
+			public boolean apply(Building building) {
+				double buildingHeadingOffset =
+						building.getLocation().computeHeadingOffset(location, heading);
+
+				return Math.abs(buildingHeadingOffset) <= CONE_OF_VISUAL_ATTENTION / 2.0;
+			}
+		};
+	}
+	
+	/**
+	 * Makes a {@link Predicate} that returns whether a building is to the left or right (depending
+	 * on value of {@code toRight} of the provided heading offset.
+	 */
+	private static Predicate<Building> makeIsToSideOfHeadingOffsetPredicate(
+			final boolean toRight,
+			final double headingOffset,
+			final Location location,
+			final float heading) {
+		
+		return new Predicate<Building>() {
+			@Override
+			public boolean apply(Building building) {
+				double buildingHeadingOffset =
+						building.getLocation().computeHeadingOffset(location, heading);
+
+				double difference = buildingHeadingOffset - headingOffset;
+				
+				// Note that the equal case is explicitly excluded, because a building with the same
+				// heading offset is in front, not to the left nor right.
+				return toRight ? difference > 0 : difference < 0;
+			}
+		};
+	}
+	
+	/**
+	 * Makes a {@link Predicate} that returns whether a building is within the same hemisphere as
+	 * the heading (whether its heading offset is within 90 degrees).
+	 */
+	private static Predicate<Building> makeIsWithinHemispherePredicate(
+			final Location location,
+			final float heading) { 
+
+		return new Predicate<Building>() {
+			@Override
+			public boolean apply(Building building) {
+				double buildingHeadingOffset =
+						building.getLocation().computeHeadingOffset(location, heading);
+				return Math.abs(buildingHeadingOffset) <= 90.0;
+			}
+		};
+	}
+
+	/**
+	 * Compares {@link Building}s by how far they are from {@code location} using {@link
+	 * RectangularLocation#getClosestPointWithin} to find optimal distances.
+	 */
+	private static Ordering<Building> makeOrderingByDistanceTo(final Location location) {
+		return new Ordering<Building>() {
+			@Override
+			public int compare(Building lhs, Building rhs) {
+				Location left = lhs.getLocation().findClosestPointWithin(location);
+				Location right = rhs.getLocation().findClosestPointWithin(location);
+
+				return Double.compare(
+						MathUtils.getDistance(
+								left.getLatitude(),
+								left.getLongitude(),
+								location.getLatitude(),
+								location.getLongitude()),
+						MathUtils.getDistance(
+								right.getLatitude(),
+								right.getLongitude(),
+								location.getLatitude(),
+								location.getLongitude()));
+			}
+		};
+	}
+	
+	/**
+	 * Compares {@link Building}s by how far its bearing is from the given location and heading
+	 * using the absolute value of {@link RectangularLocation#computeHeadingOffset}.
+	 */
+	private static Ordering<Building> makeOrderingByAbsoluteHeadingOffset(
+			final Location location,
+			final double heading) {
+		
+		return new Ordering<Building>() {
+			@Override
+			public int compare(Building lhs, Building rhs) {
+				return Double.compare(
+						Math.abs(lhs.getLocation().computeHeadingOffset(location, heading)),
+						Math.abs(rhs.getLocation().computeHeadingOffset(location, heading)));
+			}
+		};
 	}
 }
