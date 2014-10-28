@@ -3,10 +3,13 @@ package org.iwuacm.iwuglasstour.view;
 import org.iwuacm.iwuglasstour.R;
 import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 
+import com.google.common.base.Optional;
+
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,9 +18,9 @@ import android.widget.TextView;
  */
 public class OutsideView extends RelativeLayout {
 
-	private final TextView frontTextView;
-	private final TextView leftTextView;
-	private final TextView rightTextView;
+	private final BuildingLocationView frontView;
+	private final BuildingLocationView leftView;
+	private final BuildingLocationView rightView;
 	private final TextView statusTextView;
 	
 	private ViewChangeListener listener;
@@ -41,9 +44,9 @@ public class OutsideView extends RelativeLayout {
         super(context, attrs, defStyle);
         LayoutInflater.from(context).inflate(R.layout.outside, this);
         
-        this.frontTextView = (TextView) findViewById(R.id.outside_front);
-        this.leftTextView = (TextView) findViewById(R.id.outside_left);
-        this.rightTextView = (TextView) findViewById(R.id.outside_right);
+        this.frontView = (BuildingLocationView) findViewById(R.id.outside_front);
+        this.leftView = (BuildingLocationView) findViewById(R.id.outside_left);
+        this.rightView = (BuildingLocationView) findViewById(R.id.outside_right);
         this.statusTextView = (TextView) findViewById(R.id.outside_status);
         
         hasCompassInterference = false;
@@ -59,11 +62,11 @@ public class OutsideView extends RelativeLayout {
     		@Nullable BuildingWithLocation front,
     		@Nullable BuildingWithLocation right) {
 
-    	frontTextView.setText((front == null) ? "" : front.getBuilding().getName());
-    	leftTextView.setText((left == null) ? "" : left.getBuilding().getShortName());
-    	rightTextView.setText((right == null) ? "" : right.getBuilding().getShortName());
+    	leftView.setBuildingWithLocation(Optional.fromNullable(left));
+    	frontView.setBuildingWithLocation(Optional.fromNullable(front));
+    	rightView.setBuildingWithLocation(Optional.fromNullable(right));
 
-    	notifyChange();
+    	handleChange();
     }
     
     public void setHasCompassInterference(boolean hasCompassInterference) {
@@ -112,11 +115,31 @@ public class OutsideView extends RelativeLayout {
     			statusTextView.setText(newStatusString);
     		}
     		
-    		notifyChange();
+    		handleChange();
     	}
     }
+	
+	/**
+	 * The layout was not refreshed when {@link setBuilding} was called, and eventually I discovered
+	 * adding this function would fix it. It has something to do with the fact we are adding an item
+	 * to the view after it was initialized. Hopefully I've made my unfamiliarity of Android obvious
+	 * by this comment. ;-) 
+	 */
+	private void redoLayout() {
+		int measuredWidth = View.MeasureSpec.makeMeasureSpec(getWidth(), View.MeasureSpec.EXACTLY);
+		int measuredHeight =
+				View.MeasureSpec.makeMeasureSpec(getHeight(), View.MeasureSpec.EXACTLY);
+
+    	measure(measuredWidth, measuredHeight);
+    	layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+	}
     
-    private void notifyChange() {
+	/**
+	 * Redoes the layout and notifies any listeners that there has been a change to the layout.
+	 */
+    private void handleChange() {
+    	redoLayout();
+    	
     	if (listener != null) {
     		listener.onChange();
     	}

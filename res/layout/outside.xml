@@ -5,14 +5,13 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
     
-    <TextView
+    <org.iwuacm.iwuglasstour.view.BuildingLocationView
         android:id="@+id/outside_front"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="54sp"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
      
     <!-- Used to give left and right equal widths. -->
    	<View
@@ -21,30 +20,26 @@
    	    android:layout_width="0dp"
    	    android:layout_height="0dp"
    	    android:layout_centerHorizontal="true"
-        android:layout_below="@id/outside_front" />
+        android:layout_above="@+id/outside_status" />
 
-    <TextView
+    <org.iwuacm.iwuglasstour.view.BuildingLocationView
         android:id="@+id/outside_left"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
         android:gravity="left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/outside_front"
+        android:layout_above="@id/outside_status"
         android:layout_toLeftOf="@id/center_shim" />	
 
-    <TextView
+    <org.iwuacm.iwuglasstour.view.BuildingLocationView
         android:id="@+id/outside_right"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
         android:gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/outside_front"
+        android:layout_above="@id/outside_status"
         android:layout_toRightOf="@id/center_shim" />	
         
     <TextView
-        android:id="@+id/outside_status"
+        android:id="@id/outside_status"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
