@@ -2,6 +2,9 @@ package org.iwuacm.iwuglasstour;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.iwuacm.iwuglasstour.model.Building;
 import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
@@ -58,13 +61,21 @@ public class BuildingLocationManager {
 	}
 	
 	/**
+	 * Number of times to update per second. The user's location changes all the time, so throttle
+	 * how often we're making computations.
+	 */
+	private static final int UPDATES_PER_SECOND = 24;
+	
+	/**
 	 * This is approximately the field of view of the human eye (in degrees), not including
 	 * peripheral vision, so it's the amount of stuff that we can focus on at a time.
 	 */
 	@VisibleForTesting
 	static final float CONE_OF_VISUAL_ATTENTION = 55.0f;
-	
+
+	private final boolean updateImmediately;
 	private final OrientationManager orientationManager;
+	private final ScheduledExecutorService scheduledExecutorService;
 	private final Set<Listener> listeners;
 	private final FluentIterable<Building> buildingsFluentIterable;
 	
@@ -72,12 +83,12 @@ public class BuildingLocationManager {
 			new OrientationManager.OnChangedListener() {
 				@Override
 				public void onOrientationChanged(OrientationManager orientationManager) {
-					updateLocationState();
+					requestUpdateLocationState();
 				}
 		
 				@Override
 				public void onLocationChanged(OrientationManager orientationManager) {
-					updateLocationState();
+					requestUpdateLocationState();
 				}
 		
 				@Override
@@ -91,18 +102,43 @@ public class BuildingLocationManager {
 				}
 			};
 			
+	private final Runnable updateLocationStateRunnable = new Runnable() {
+		@Override
+		public void run() {
+			// Above updateLocationState for thread safety.
+			setTimerQueued(false);
+			
+			updateLocationState();
+		}
+	};
+	
 	private BuildingWithLocation left;
 	private BuildingWithLocation front;
 	private BuildingWithLocation right;
 	private Building inside;
 	private boolean hasInterference;
 	private boolean hasLocation;
+	private boolean isTimerQueued;
 	
 	public BuildingLocationManager(
 			Buildings buildings,
 			OrientationManager orientationManager) {
 
+		this(buildings, orientationManager, false /* updateImmediately */);
+	}
+	
+	/**
+	 * Allows {@link #requestUpdateLocationState} to update immediately when testing.
+	 */
+	@VisibleForTesting
+	BuildingLocationManager(
+			Buildings buildings,
+			OrientationManager orientationManager,
+			boolean updateImmediately) {
+
+		this.updateImmediately = updateImmediately;
 		this.orientationManager = orientationManager;
+		this.scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 		this.listeners = new LinkedHashSet<Listener>();
 		this.buildingsFluentIterable = FluentIterable.from(buildings.getAll());
 	}
@@ -345,6 +381,34 @@ public class BuildingLocationManager {
 		for (Listener listener : listeners) {
 			listener.onCompassInterference(hasInterference);
 		}
+	}
+	
+	/**
+	 * Requests for the location state to be updated via {@link #updateLocationState}, but throttles
+	 * the requests.
+	 */
+	private synchronized void requestUpdateLocationState() {
+		if (updateImmediately) {
+			updateLocationState();
+			return;
+		}
+
+		if (!isTimerQueued()) {
+			setTimerQueued(true);
+
+			scheduledExecutorService.schedule(
+					updateLocationStateRunnable,
+					1000 / UPDATES_PER_SECOND,
+					TimeUnit.MILLISECONDS);
+		}
+	}
+	
+	private synchronized boolean isTimerQueued() {
+		return isTimerQueued;
+	}
+	
+	private synchronized void setTimerQueued(boolean isTimerQueued) {
+		this.isTimerQueued = isTimerQueued;
 	}
 	
 	/**

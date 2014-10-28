@@ -237,7 +237,7 @@ public class BuildingLocationManagerTest extends AndroidTestCase {
 	
 	private BuildingLocationManager createBuildingLocationManager() {
 		BuildingLocationManager locationManager =
-				new BuildingLocationManager(buildings, orientationManager);
+				new BuildingLocationManager(buildings, orientationManager, true);
 		locationManager.addListener(listener);
 		locationManager.startTracking();
 		
