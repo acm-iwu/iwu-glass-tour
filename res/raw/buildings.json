@@ -14,36 +14,62 @@
             }
         ],
         "photos": [
-            {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
-            }
+        	{
+        		"drawableName": "art_01",
+        		"description": "Ames School of Art from outside"
+    		}
         ],
         "attractions": [
-            {
-                "name": "building1AT1",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "building1AT2",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
-                ]
-            }
+        	{
+        		"name": "Spiral",
+        		"description": "The sprial can be found at the entrance.",
+        		"photos": [
+        			{ "drawableName": "art_02" }
+    			]
+			},
+        	{
+        		"name": "Glass classroom",
+        		"photos": [
+        			{ "drawableName": "art_03" }
+    			]
+			},
+        	{
+        		"name": "Printmaking classroom",
+        		"photos": [
+        			{ "drawableName": "art_04" },
+        			{ "drawableName": "art_05" }
+    			]
+			},
+        	{
+        		"name": "Lounge",
+        		"photos": [
+        			{ "drawableName": "art_06" }
+    			]
+			},
+        	{
+        		"name": "Photography classroom",
+        		"photos": [
+        			{ "drawableName": "art_07" }
+    			]
+			},
+        	{
+        		"name": "Lecture classroom",
+        		"photos": [
+        			{ "drawableName": "art_08" }
+    			]
+			},
+        	{
+        		"name": "Painting classroom",
+        		"photos": [
+        			{ "drawableName": "art_09" }
+    			]
+			},
+        	{
+        		"name": "Drawing classroom",
+        		"photos": [
+        			{ "drawableName": "art_10" }
+    			]
+			}
         ]
     },
     
@@ -63,34 +89,151 @@
             }
         ],
         "photos": [
-            {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
-            }
+        	{
+        		"drawableName": "ames_01",
+        		"description": "Ames from outside"
+    		}
         ],
         "attractions": [
             {
-                "name": "building2AT1",
-                "description": "Blah",
+                "name": "John Wesley Powell rotunda",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "ames_02" },
+                	{ "drawableName": "ames_03" }
                 ]
             },
             {
-                "name": "building2AT2",
-                "description": "Blah",
+                "name": "First floor",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "ames_04" }
+                ]
+            },
+            {
+                "name": "Information Commons",
+                "photos": [
+                	{ "drawableName": "ames_05" }
+                ]
+            },
+            {
+                "name": "Basement",
+                "photos": [
+                	{ "drawableName": "ames_06" }
+                ]
+            },
+            {
+                "name": "Book shelves",
+                "photos": [
+                	{ "drawableName": "ames_07" }
+                ]
+            },
+            {
+                "name": "Beckman Auditorium",
+                "photos": [
+                	{ "drawableName": "ames_08" }
+                ]
+            },
+            {
+                "name": "Second floor",
+                "photos": [
+                	{ "drawableName": "ames_09" }
+                ]
+            },
+            {
+                "name": "Second floor rotunda",
+                "photos": [
+                	{ "drawableName": "ames_10" }
+                ]
+            },
+            {
+                "name": "Hang out station",
+                "photos": [
+                	{ "drawableName": "ames_11" }
+                ]
+            },
+            {
+                "name": "Example of a study area",
+                "description": "Study areas can be found on all floors.",
+                "photos": [
+                	{ "drawableName": "ames_12" }
+                ]
+            },
+            {
+                "name": "Computer study area",
+                "photos": [
+                	{ "drawableName": "ames_13" }
+                ]
+            },
+            {
+                "name": "Third floor study area",
+                "photos": [
+                	{ "drawableName": "ames_14" }
+                ]
+            },
+            {
+                "name": "Thorpe Center lobby",
+                "photos": [
+                	{ "drawableName": "ames_15" },
+                	{ "drawableName": "ames_17" },
+                	{ "drawableName": "ames_19" }
+                ]
+            },
+            {
+                "name": "Thorpe Center study areas",
+                "photos": [
+                	{ "drawableName": "ames_16" },
+                	{ "drawableName": "ames_18" },
+                	{ "drawableName": "ames_20" },
+                	{ "drawableName": "ames_21" }
+                ]
+            },
+            {
+                "name": "Example of upper floor study room",
+                "photos": [
+                	{ "drawableName": "ames_22" }
+                ]
+            },
+            {
+                "name": "Third floor study area",
+                "photos": [
+                	{ "drawableName": "ames_24" }
+                ]
+            },
+            {
+                "name": "Fourth floor",
+                "photos": [
+                	{ "drawableName": "ames_23" }
+                ]
+            },
+            {
+                "name": "Minor Jr. Meyers Collection",
+                "photos": [
+                	{ "drawableName": "ames_25" }
+                ]
+            },
+            {
+                "name": "Beauty and the Beast room",
+                "description": "Located on the fourth floor.",
+                "photos": [
+                	{ "drawableName": "ames_26" }
+                ]
+            },
+            {
+                "name": "Archives",
+                "photos": [
+                	{ "drawableName": "ames_27" }
+                ]
+            },
+            {
+                "name": "Stained glass",
+                "description": "The stained glass was donated by Oxford University.",
+                "photos": [
+                	{ "drawableName": "ames_28" }
+                ]
+            },
+            {
+                "name": "",
+                "photos": [
+                	{ "drawableName": "ames_28" }
                 ]
             }
         ]
@@ -113,33 +256,20 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "buck_01",
+                "description": "Buck from the east side"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "buck_02",
+                "description": "Buck from the front"
             }
         ],
         "attractions": [
             {
-                "name": "building3AT1",
-                "description": "Blah",
+                "name": "Language resource center",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "building3AT2",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "buck_03" },
+                	{ "drawableName": "buck_04" }
                 ]
             }
         ]
@@ -162,33 +292,39 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "cla_01",
+                "description": "CLA from the south entrance"
             }
         ],
         "attractions": [
             {
-                "name": "building4AT1",
-                "description": "Blah",
+                "name": "Hang out area",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "cla_02" }
                 ]
             },
             {
-                "name": "building4AT2",
-                "description": "Blah",
+                "name": "Lounge",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "cla_03" }
+                ]
+            },
+            {
+                "name": "International office",
+                "photos": [
+                	{ "drawableName": "cla_04" }
+                ]
+            },
+            {
+                "name": "Study abroad office",
+                "photos": [
+                	{ "drawableName": "cla_05" }
+                ]
+            },
+            {
+                "name": "Classroom",
+                "photos": [
+                	{ "drawableName": "cla_06" }
                 ]
             }
         ]
@@ -211,33 +347,44 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "cns_04",
+                "description": "South entrance"
             }
         ],
         "attractions": [
             {
-                "name": "building5AT1",
-                "description": "Blah",
+                "name": "Lecture halls",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "cns_07" },
+                	{ "drawableName": "cns_01" }
                 ]
             },
             {
-                "name": "building5AT2",
-                "description": "Blah",
+                "name": "Atrium",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "cns_02" },
+                	{ "drawableName": "cns_05" },
+                	{ "drawableName": "cns_06" },
+                	{ "drawableName": "cns_09" }
+                ]
+            },
+            {
+                "name": "Chemistry stock room",
+                "photos": [
+                	{ "drawableName": "cns_03" }
+                ]
+            },
+            {
+                "name": "Laboratory hall",
+                "photos": [
+                	{ "drawableName": "cns_08" }
+                ]
+            },
+            {
+                "name": "Computer lab",
+                "photos": [
+                	{ "drawableName": "cns_10" },
+                	{ "drawableName": "cns_11" }
                 ]
             }
         ]
@@ -260,33 +407,19 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "chapel_04",
+                "description": "Front"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "chapel_01"
             }
         ],
         "attractions": [
             {
-                "name": "building6AT1",
-                "description": "Blah",
+                "name": "Inside",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "building6AT2",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "chapel_03" },
+                	{ "drawableName": "chapel_02" }
                 ]
             }
         ]
@@ -309,33 +442,22 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "hansen_01",
+                "description": "Outside"
             }
         ],
         "attractions": [
             {
-                "name": "building7AT1",
-                "description": "Blah",
+                "name": "Center court",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "hansen_02" },
+                	{ "drawableName": "hansen_04" }
                 ]
             },
             {
-                "name": "building7AT2",
-                "description": "Blah",
+                "name": "Hattie's",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "hansen_03" }
                 ]
             }
         ]
@@ -358,33 +480,21 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "holmes_01",
+                "description": "Outside"
             }
         ],
         "attractions": [
             {
-                "name": "building8AT1",
-                "description": "Blah",
+                "name": "Stairwell to second floor",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "holmes_02" }
                 ]
             },
             {
-                "name": "building8AT2",
-                "description": "Blah",
+                "name": "Business office",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "holmes_03" }
                 ]
             }
         ]
@@ -405,36 +515,11 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "observatory_01",
+                "description": "View from west"
             }
         ],
-        "attractions": [
-            {
-                "name": "building9AT1",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "building9AT2",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
-                ]
-            }
-        ]
+        "attractions": []
     },
 	{
         "name": "McPherson Theatre",
@@ -452,33 +537,31 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "mcpherson_04",
+                "description": "Main entrance"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "mcpherson_05",
+                "description": "North exterior"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Lobby",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "mcpherson_01" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Stage and auditorium",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "mcpherson_02" }
+                ]
+            },
+            {
+                "name": "Stage preparation",
+                "photos": [
+                	{ "drawableName": "mcpherson_03" }
                 ]
             }
         ]
@@ -498,33 +581,22 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "memorial_ctr_06",
+                "description": "South entrance"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "memorial_ctr_05",
+                "description": "Joslin Atrium (east entrance)"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "West lobby",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "Lab",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "memorial_ctr_01" },
+                	{ "drawableName": "memorial_ctr_02" },
+                	{ "drawableName": "memorial_ctr_03" },
+                	{ "drawableName": "memorial_ctr_04" }
                 ]
             }
         ]
@@ -544,33 +616,22 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "welcome_ctr_01",
+                "description": "Main entrance"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Lobby",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "welcome_ctr_02" },
+                	{ "drawableName": "welcome_ctr_04" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Alumni Auditorium",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "welcome_ctr_03" }
                 ]
             }
         ]
@@ -590,36 +651,14 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "president_01",
+                "description": "Main entrance"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "president_02"
             }
         ],
-        "attractions": [
-            {
-                "name": "Lab",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "Lab",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
-                ]
-            }
-        ]
+        "attractions": []
     }, {
         "name": "Presser Hall",
         "shortName": "Presser",
@@ -636,33 +675,35 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "presser_02",
+                "description": "South entrance"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Auditorium",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "presser_01" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Choral practice room",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "presser_03" }
+                ]
+            },
+            {
+                "name": "Lounges",
+                "photos": [
+                	{ "drawableName": "presser_04" },
+                	{ "drawableName": "presser_07" }
+                ]
+            },
+            {
+                "name": "Hallways",
+                "photos": [
+                	{ "drawableName": "presser_05" },
+                	{ "drawableName": "presser_06" }
                 ]
             }
         ]
@@ -682,33 +723,16 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "shaw_01",
+                "description": "Entrance near Holmes Hall"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Classroom",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
-                ]
-            },
-            {
-                "name": "Lab",
-                "description": "Blah",
-                "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "shaw_02" },
+                	{ "drawableName": "shaw_03" }
                 ]
             }
         ]
@@ -726,35 +750,32 @@
                 "longitude": -88.990604
             }
         ],
-        "photos": [
-            {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
-            }
-        ],
+        "photos": [],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Founders of Shirk",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "shirk_01" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Track",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "shirk_02" },
+                	{ "drawableName": "shirk_04" }
+                ]
+            },
+            {
+                "name": "Fitness room",
+                "photos": [
+                	{ "drawableName": "shirk_03" }
+                ]
+            },
+            {
+                "name": "Fort Natatorium",
+                "photos": [
+                	{ "drawableName": "shirk_05" },
+                	{ "drawableName": "shirk_06" }
                 ]
             }
         ]
@@ -774,33 +795,48 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
+                "drawableName": "sfh_10",
+                "description": "South entrance"
             },
             {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "sfh_02"
+            },
+            {
+                "drawableName": "sfh_01"
+            },
+            {
+                "drawableName": "sfh_04",
+                "description": "North entrance"
+            },
+            {
+                "drawableName": "sfh_09",
+                "description": "Glass piano design (rear)"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Study booths",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "sfh_03" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Traditional classrooms",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "sfh_05" },
+                	{ "drawableName": "sfh_08" }
+                ]
+            },
+            {
+                "name": "Discussion classroom",
+                "photos": [
+                	{ "drawableName": "sfh_07" }
+                ]
+            },
+            {
+                "name": "Hang out area",
+                "photos": [
+                	{ "drawableName": "sfh_06" }
                 ]
             }
         ]
@@ -820,33 +856,33 @@
         ],
         "photos": [
             {
-                "drawableName": "test_1",
-                "description": "Blah"
-            },
-            {
-                "drawableName": "test_2",
-                "description": "Blah"
+                "drawableName": "stevenson_03",
+                "description": "Main entrance"
             }
         ],
         "attractions": [
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Lecture hall",
                 "photos": [
-                    {
-                        "drawableName": "test_3",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "stevenson_01" }
                 ]
             },
             {
-                "name": "Lab",
-                "description": "Blah",
+                "name": "Nursing Association poster",
                 "photos": [
-                    {
-                        "drawableName": "test_4",
-                        "description": "Blah"
-                    }
+                	{ "drawableName": "stevenson_02" }
+                ]
+            },
+            {
+                "name": "History of nursing at IWU",
+                "photos": [
+                	{ "drawableName": "stevenson_04" }
+                ]
+            },
+            {
+                "name": "Hang out area",
+                "photos": [
+                	{ "drawableName": "stevenson_05" }
                 ]
             }
         ]
