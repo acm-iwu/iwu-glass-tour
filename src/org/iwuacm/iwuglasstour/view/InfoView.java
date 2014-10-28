@@ -114,11 +114,11 @@ public class InfoView extends CardScrollView {
 	private List<CardBuilder> createAttractions(List<Attraction> attractions, Context context){
 		List<CardBuilder> attractionCards = new ArrayList<CardBuilder>();
 		
-		for(Attraction attraction : attractions){
+		for (Attraction attraction : attractions) {
 			CardBuilder.Layout layout =
 					attraction.getPhotos().isEmpty()
 							? CardBuilder.Layout.TEXT
-							: CardBuilder.Layout.COLUMNS;
+							: CardBuilder.Layout.CAPTION;
 
 			CardBuilder newCard = new CardBuilder(context, layout)
 					.setFootnote(attraction.getName());
