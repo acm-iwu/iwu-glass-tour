@@ -2,7 +2,7 @@
 {
         "name": "Joyce Eichhorn Ames School of Art Building",
         "shortName": "Art",
-        "description": "The Joyce Eichhorn Ames School of Art",
+        "description": "The Joyce Eichhorn Ames School of Art Building was constructed in 1973. It houses classrooms and studios for painting, printmaking, photography, ceramics, graphics, and other art activities. The building also accommodates the Merwin and Wakeley Galleries.",
         "location": [
             {
                 "latitude": 40.489741,
@@ -100,7 +100,7 @@
     {
         "name": "Buck Memorial Library",
         "shortName": "Buck",
-        "description": "Buck Memorial Library houses the language departments, Language Resource Center and The Writing Center. Computer ",
+        "description": "Buck Memorial Library houses the language departments, Language Resource Center and The Writing Center. Computer labs are on the second floor.",
         "location": [
             {
                 "latitude": 40.489964,
@@ -149,7 +149,7 @@
     {
         "name": "Center for Liberal Arts",
         "shortName": "CLA",
-        "description": "The Center for Liberal Arts houses the departments of political science, history, sociology and anthropology, ",
+        "description": "The Center for Liberal Arts houses the departments of political science, history, sociology and anthropology, education, philosophy, religion, business administration, economics, international studies, and women's studies.",
         "location": [
             {
                 "latitude": 40.491705,
@@ -198,7 +198,7 @@
     {
         "name": "Center for Natural Science",
         "shortName": "CNS",
-        "description": "The Center for Natural Sciences houses the departments of biology, chemistry, physics, mathematics, computer ",
+        "description": "The Center for Natural Sciences houses the departments of biology, chemistry, physics, mathematics, computer science and psychology.",
         "location": [
             {
                 "latitude": 40.491884,
@@ -247,7 +247,7 @@
     {
         "name": "Evelyn Chapel",
         "shortName": "Chapel",
-        "description": "Constructed in 1984, is the center of campus religious activity and the location of offices of the University ",
+        "description": "Constructed in 1984, is the center of campus religious activity and the location of offices of the University Chaplain.",
         "location": [
             {
                 "latitude": 40.490481,
@@ -296,7 +296,7 @@
     {
         "name": "Hansen Student Center",
         "shortName": "Hansen",
-        "description": "Hansen Student Center hosts many campus activities on its Center Court. The renovated facility also houses offices ",
+        "description": "Hansen Student Center hosts many campus activities on its Center Court. The renovated facility also houses offices for Student Senate and student organizations, the Bookstore, Hattie's Cafe, Tommy's Grille and patio, and a convenience shop.",
         "location": [
             {
                 "latitude": 40.492283,
@@ -345,7 +345,7 @@
     {
         "name": "Holmes Hall",
         "shortName": "Holmes",
-        "description": "Holmes Hall houses many administrative offices, including the Dean of Students, Business Office, Financial Aid, ",
+        "description": "Holmes Hall houses many administrative offices, including the Dean of Students, Business Office, Financial Aid, Advancement, the President's Office and the Registrar.",
         "location": [
             {
                 "latitude": 40.491389,
@@ -392,7 +392,7 @@
     {
         "name": "Mark Evans Observatory",
         "shortName": "Observatory",
-        "description": "The Mark Evans Observatory, completed in 1970, gained a new telescope and charge-coupled device (CCD) camera in ",
+        "description": "The Mark Evans Observatory, completed in 1970, gained a new telescope and charge-coupled device (CCD) camera in 2013. As a result, the observatory was designated an official observing site of the Minor Planet Center (MPC).",
         "location": [
             {
                 "latitude": 40.491642,
