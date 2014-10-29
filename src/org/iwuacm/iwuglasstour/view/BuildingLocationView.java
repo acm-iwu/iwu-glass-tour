@@ -1,9 +1,12 @@
 package org.iwuacm.iwuglasstour.view;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import org.iwuacm.iwuglasstour.R;
+import org.iwuacm.iwuglasstour.model.Building;
 import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
+import org.iwuacm.iwuglasstour.model.Photo;
 import org.iwuacm.iwuglasstour.util.MathUtils;
 
 import com.google.common.base.Optional;
@@ -11,6 +14,8 @@ import com.google.common.base.Optional;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +33,7 @@ public class BuildingLocationView extends RelativeLayout {
 	private static final DecimalFormat MILES_FORMAT = new DecimalFormat("0.00");
 	private static final DecimalFormat FEET_FORMAT = new DecimalFormat("0");
 	
+	private final ImageView photoView;
 	private final TextView nameView;
 	private final TextView distanceView;
 
@@ -46,6 +52,7 @@ public class BuildingLocationView extends RelativeLayout {
 		super(context, attrs, defStyle);
 		LayoutInflater.from(context).inflate(R.layout.building_location, this);
 		
+		this.photoView = (ImageView) findViewById(R.id.building_location_photo);
 		this.nameView = (TextView) findViewById(R.id.building_location_name);
 		this.distanceView = (TextView) findViewById(R.id.building_location_distance);
 		
@@ -60,14 +67,23 @@ public class BuildingLocationView extends RelativeLayout {
 			Optional<BuildingWithLocation> buildingWithLocationOptional) {
 
 		if (!buildingWithLocationOptional.isPresent()) {
-			nameView.setText("");
+			setVisibility(View.GONE);
+
 			return;
 		}
 		
 		BuildingWithLocation buildingWithLocation = buildingWithLocationOptional.get();
+		Building building = buildingWithLocation.getBuilding();
 
-		nameView.setText(buildingWithLocation.getBuilding().getShortName());
+		List<Photo> photos = building.getPhotos();
+		int photoResource =
+				photos.isEmpty() ? R.drawable.ic_building : photos.get(0).getDrawableId();
+		photoView.setImageResource(photoResource);
+
+		nameView.setText(building.getShortName());
 		distanceView.setText(formatDistance(buildingWithLocation.getDistance()));
+		
+		setVisibility(View.VISIBLE);
 	}
 	
 	// TODO: Internationalize.
