@@ -29,4 +29,13 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/building_location_name" />
     
+    <ImageView
+        android:id="@+id/building_location_arrow_right"
+        android:src="@drawable/ic_arrow_right"
+        android:gravity="center_horizontal"
+        android:layout_width="33sp"
+        android:layout_height="33sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/building_location_distance" />
+
 </RelativeLayout>

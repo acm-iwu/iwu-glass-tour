@@ -30,12 +30,18 @@ public class BuildingLocationView extends RelativeLayout {
 	 */
 	private static final double MILES_THRESHOLD = 0.1;
 	
+	/**
+	 * The angle relative to up that the arrow image is rotated at. 
+	 */
+	private static final double ARROW_ROTATION_ANGLE = 90.0;
+	
 	private static final DecimalFormat MILES_FORMAT = new DecimalFormat("0.00");
 	private static final DecimalFormat FEET_FORMAT = new DecimalFormat("0");
 	
 	private final ImageView photoView;
 	private final TextView nameView;
 	private final TextView distanceView;
+	private final ImageView arrowView;
 
 	private final String milesUnit;
 	private final String feetUnit;
@@ -55,6 +61,7 @@ public class BuildingLocationView extends RelativeLayout {
 		this.photoView = (ImageView) findViewById(R.id.building_location_photo);
 		this.nameView = (TextView) findViewById(R.id.building_location_name);
 		this.distanceView = (TextView) findViewById(R.id.building_location_distance);
+		this.arrowView = (ImageView) findViewById(R.id.building_location_arrow_right);
 		
 		milesUnit = context.getResources().getString(R.string.miles_unit);
 		feetUnit = context.getResources().getString(R.string.feet_unit);
@@ -82,6 +89,10 @@ public class BuildingLocationView extends RelativeLayout {
 
 		nameView.setText(building.getShortName());
 		distanceView.setText(formatDistance(buildingWithLocation.getDistance()));
+		
+		float arrowRotation =
+				(float) (buildingWithLocation.getHeadingOffset() - ARROW_ROTATION_ANGLE);
+		arrowView.setRotation(arrowRotation);
 		
 		setVisibility(View.VISIBLE);
 	}
