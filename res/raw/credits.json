@@ -52,12 +52,15 @@
 	{
 		"firstName": "Nathaniel",
 		"lastName": "Schmeling",
-		"contributions": "Outside building view"
+		"contributions": "Outside building view."
 	},
 	{
 		"firstName": "LinhChi",
 		"lastName": "Bui",
-		"contributions": "Photography."
+		"contributions": "Photography.",
+		"photo": {
+			"drawableName": "credit_lbui"
+		}
 	},
 	{
 		"firstName": "Cindy",
