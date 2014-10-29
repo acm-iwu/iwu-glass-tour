@@ -6,6 +6,7 @@ import org.iwuacm.iwuglasstour.model.BuildingWithLocation;
 import com.google.common.base.Optional;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.TextView;
  */
 public class OutsideView extends RelativeLayout {
 
+	private final Handler handler;
 	private final BuildingLocationView frontView;
 	private final BuildingLocationView leftView;
 	private final BuildingLocationView rightView;
@@ -44,9 +46,12 @@ public class OutsideView extends RelativeLayout {
         super(context, attrs, defStyle);
         LayoutInflater.from(context).inflate(R.layout.outside, this);
         
+        this.handler = new Handler();
+
         this.frontView = (BuildingLocationView) findViewById(R.id.outside_front);
         this.leftView = (BuildingLocationView) findViewById(R.id.outside_left);
         this.rightView = (BuildingLocationView) findViewById(R.id.outside_right);
+
         this.statusTextView = (TextView) findViewById(R.id.outside_status);
         
         hasCompassInterference = false;
@@ -93,27 +98,39 @@ public class OutsideView extends RelativeLayout {
     	this.listener = listener;
     }
     
+    @Override
+    public boolean post(Runnable action) {
+    	return handler.post(action);
+    }
+    
     /**
      * If no location is present, it displays the location message, otherwise it displays the
      * compass interference message if there is compass interference.
      */
     private void updateStatusMessage() {
-    	Integer newStatusString = null;
+    	final Integer newStatusString;
 
     	if (!hasLocation) {
     		newStatusString = R.string.location_unavailable;
     	} else if (hasCompassInterference) {
     		newStatusString = R.string.magnetic_interference;
+    	} else {
+    		newStatusString = null;
     	}
     	
     	if (newStatusString != statusString) {
     		statusString = newStatusString;
     		
-    		if (newStatusString == null) {
-    			statusTextView.setText("");
-    		} else {
-    			statusTextView.setText(newStatusString);
-    		}
+    		handler.post(new Runnable() {
+				@Override
+				public void run() {
+					if (newStatusString == null) {
+						statusTextView.setText("");
+					} else {
+						statusTextView.setText(newStatusString);
+					}
+				}
+			});
     		
     		handleChange();
     	}
@@ -126,22 +143,28 @@ public class OutsideView extends RelativeLayout {
 	 * by this comment. ;-) 
 	 */
 	private void redoLayout() {
-		int measuredWidth = View.MeasureSpec.makeMeasureSpec(getWidth(), View.MeasureSpec.EXACTLY);
+		int measuredWidth =
+				View.MeasureSpec.makeMeasureSpec(getWidth(), View.MeasureSpec.EXACTLY);
 		int measuredHeight =
 				View.MeasureSpec.makeMeasureSpec(getHeight(), View.MeasureSpec.EXACTLY);
 
-    	measure(measuredWidth, measuredHeight);
-    	layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+		measure(measuredWidth, measuredHeight);
+		layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
 	}
     
 	/**
 	 * Redoes the layout and notifies any listeners that there has been a change to the layout.
 	 */
     private void handleChange() {
-    	redoLayout();
-    	
-    	if (listener != null) {
-    		listener.onChange();
-    	}
+    	post(new Runnable() {
+			@Override
+			public void run() {
+				redoLayout();
+
+				if (listener != null) {
+					listener.onChange();
+				}
+			}
+		});
     }
 }

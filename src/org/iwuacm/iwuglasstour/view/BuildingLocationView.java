@@ -12,6 +12,7 @@ import org.iwuacm.iwuglasstour.util.MathUtils;
 import com.google.common.base.Optional;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,8 @@ public class BuildingLocationView extends RelativeLayout {
 	private static final DecimalFormat MILES_FORMAT = new DecimalFormat("0.00");
 	private static final DecimalFormat FEET_FORMAT = new DecimalFormat("0");
 	
+	private final Handler handler;
+
 	private final ImageView photoView;
 	private final TextView nameView;
 	private final TextView distanceView;
@@ -58,13 +61,17 @@ public class BuildingLocationView extends RelativeLayout {
 		super(context, attrs, defStyle);
 		LayoutInflater.from(context).inflate(R.layout.building_location, this);
 		
+		this.handler = new Handler();
+		
 		this.photoView = (ImageView) findViewById(R.id.building_location_photo);
 		this.nameView = (TextView) findViewById(R.id.building_location_name);
 		this.distanceView = (TextView) findViewById(R.id.building_location_distance);
 		this.arrowView = (ImageView) findViewById(R.id.building_location_arrow_right);
 		
-		milesUnit = context.getResources().getString(R.string.miles_unit);
-		feetUnit = context.getResources().getString(R.string.feet_unit);
+		this.milesUnit = context.getResources().getString(R.string.miles_unit);
+		this.feetUnit = context.getResources().getString(R.string.feet_unit);
+		
+		setVisibility(View.GONE);
 	}
 	
 	/**
@@ -74,7 +81,12 @@ public class BuildingLocationView extends RelativeLayout {
 			Optional<BuildingWithLocation> buildingWithLocationOptional) {
 
 		if (!buildingWithLocationOptional.isPresent()) {
-			setVisibility(View.GONE);
+			post(new Runnable() {
+				@Override
+				public void run() {
+					setVisibility(View.GONE);
+				}
+			});
 
 			return;
 		}
@@ -83,18 +95,33 @@ public class BuildingLocationView extends RelativeLayout {
 		Building building = buildingWithLocation.getBuilding();
 
 		List<Photo> photos = building.getPhotos();
-		int photoResource =
+		final int photoResource =
 				photos.isEmpty() ? R.drawable.ic_building : photos.get(0).getDrawableId();
-		photoView.setImageResource(photoResource);
+		
+		final String nameText = building.getShortName();
+		final String distanceText = formatDistance(buildingWithLocation.getDistance());
 
-		nameView.setText(building.getShortName());
-		distanceView.setText(formatDistance(buildingWithLocation.getDistance()));
-		
-		float arrowRotation =
+		final float arrowRotation =
 				(float) (buildingWithLocation.getHeadingOffset() - ARROW_ROTATION_ANGLE);
-		arrowView.setRotation(arrowRotation);
-		
-		setVisibility(View.VISIBLE);
+
+		post(new Runnable() {
+			@Override
+			public void run() {
+				photoView.setImageResource(photoResource);
+
+				nameView.setText(nameText);
+				distanceView.setText(distanceText);
+				
+				arrowView.setRotation(arrowRotation);
+
+				setVisibility(View.VISIBLE);
+			}
+		});
+	}
+	
+	@Override
+	public boolean post(Runnable action) {
+		return handler.post(action);
 	}
 	
 	// TODO: Internationalize.

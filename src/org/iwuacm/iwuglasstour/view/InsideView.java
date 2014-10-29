@@ -7,6 +7,7 @@ import org.iwuacm.iwuglasstour.view.common.CardBuilders;
 import com.google.android.glass.widget.CardBuilder;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 public class InsideView extends FrameLayout {
 	
 	private final Context context;
+	private final Handler handler;
 	
 	private ViewChangeListener listener;
 	
@@ -34,21 +36,30 @@ public class InsideView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.inside, this);
 
         this.context = context;
+        this.handler = new Handler();
     }
     
     public void setBuilding(final Building building) {
-    	removeAllViews();
+    	post(new Runnable() {
+			@Override
+			public void run() {
+				removeAllViews();
 
-    	CardBuilder cardBuilder = CardBuilders.createBuildingDescriptionCard(building, context);
-    	addView(cardBuilder.getView());
-
-    	redoLayout();
-
-    	notifyChange();
+				CardBuilder cardBuilder = CardBuilders.createBuildingDescriptionCard(building, context);
+				addView(cardBuilder.getView());
+			}
+		});
+    	
+    	handleChange();
     }
 
 	public void setListener(ViewChangeListener listener) {
 		this.listener = listener;
+	}
+	
+	@Override
+	public boolean post(Runnable action) {
+		return handler.post(action);
 	}
 	
 	/**
@@ -65,10 +76,20 @@ public class InsideView extends FrameLayout {
     	measure(measuredWidth, measuredHeight);
     	layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
 	}
-	
-	private void notifyChange() {
-		if (listener != null) {
-			listener.onChange();
-		}
-	}
+    
+	/**
+	 * Redoes the layout and notifies any listeners that there has been a change to the layout.
+	 */
+    private void handleChange() {
+    	post(new Runnable() {
+			@Override
+			public void run() {
+				redoLayout();
+
+				if (listener != null) {
+					listener.onChange();
+				}
+			}
+		});
+    }
 }
